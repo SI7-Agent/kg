@@ -26,6 +26,6 @@ int main()
     }
     if (y > k*x + b)
     {
-        printf("nad grafikm");
+        printf("nad grafikom");
     }
 }
