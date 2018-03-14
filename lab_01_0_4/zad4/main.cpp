@@ -3,7 +3,7 @@
 int main()
 {
     int s;
-    printf("vvedite, skolko u nas denel (v kopeikah)\n");
+    printf("vvedite, skolko u nas deneg (v kopeikah)\n");
     scanf("%d", &s);
 
     if (s < 45)
