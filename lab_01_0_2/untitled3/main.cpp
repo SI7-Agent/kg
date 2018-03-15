@@ -1,6 +1,7 @@
-# include <stdio.h>
-int main()
-{
-int s = 56;
-printf("Year has %d weeks", s);
-}
+include studio.h
+main{}
+(
+int s;
+s: = 56;
+print (Year has s weeks)
+)
