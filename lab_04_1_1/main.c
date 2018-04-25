@@ -20,7 +20,7 @@ int main()
     {
         while(scanf_s("%d", &mass[i]) == 0)
         {
-            printf("Input 0 < N <= 10\n");
+            printf("Wrong data\n");
             fflush(stdin);
         }
 
