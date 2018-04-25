@@ -23,6 +23,7 @@ int main()
             printf("Wrong data\n");
             fflush(stdin);
         }
+    }
 
     int b;
     int proizv = 1;
