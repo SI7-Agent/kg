@@ -30,11 +30,13 @@ int main()
     printf("Input the array elements:\n");
     int i;
     for (i = 0; i < N; i++)
+    {
         while(scanf_s("%d", &mass[i]) == 0)
         {
             printf("Wrong data\n");
             fflush(stdin);
         }
+    }
 
     int num = 0;
     int b1 = 0;
