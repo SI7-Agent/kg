@@ -21,7 +21,6 @@ int get_num(int *p, int k, int i)
                 schit++;
             }
         }
-        //printf("\n%d", x);
         schit = 0;
         b1 = 0;
         for (b1; b1 < i; b1++)
@@ -95,12 +94,14 @@ int main()
         i++;
     }
     int b = 0;
-    //for (b; b < i; b++)
-    //{
-      //  printf("\n%d", mas[b]);
-    //}
 
     int k = get_k(&p, i);
+    if (k == 0)
+    {
+        printf("list has only positive or negative elements"
+               "\ncontinuous countations are impossible");
+        return -1;
+    }
     int res = get_num(&p, k, i);
     printf("\n%d", res);
 }
