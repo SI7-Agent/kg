@@ -104,4 +104,5 @@ int main()
     }
     int res = get_num(&p, k, i);
     printf("\n%d", res);
+    fclose(f);
 }
