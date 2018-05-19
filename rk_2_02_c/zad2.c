@@ -52,14 +52,16 @@ int main()
 
     while (count < amount)
     {
-        printf("Input name:\n");
+        printf("\nInput name:\n");
         scanf("%s", name);
 
-        printf("Input adress:\n");
+        printf("\nInput adress:\n");
         scanf("%s", adress);
 
-        printf("Input phone number:\n");
+        printf("\nInput phone number:\n");
         scanf("%s", phone);
+
+        printf("\n");
 
         people* new_person = insert(person, name, adress, phone, count);
         if (new_person)
