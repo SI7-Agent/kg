@@ -100,4 +100,12 @@ int main()
             }
         }
     }
+
+    for (i = 0; i < size; i++)
+        free(mas[i]);
+
+    free(mas);
+
+    printf("\nMemory free, task complited");
+    return 0;
 }
