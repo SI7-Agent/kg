@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
 {
     int average = 0;
