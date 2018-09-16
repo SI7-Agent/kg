@@ -98,6 +98,12 @@ int main(int argc, char *argv[])
 
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
 
+        tb = tick();
+        qsort(array_for_filter, size2, sizeof(int), mysort);
+        te = tick();
+
+        printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
+
         FILE *f_out = fopen(argv[2], "w");
 
         for (int i = 0; i < size2; i++)
@@ -116,6 +122,12 @@ int main(int argc, char *argv[])
             printf("%d\n", *(array_orig+i));
 
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
+
+        tb = tick();
+        qsort(array_orig, size, sizeof(int), mysort);
+        te = tick();
+
+        printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
 
         FILE *f_out = fopen(argv[2], "w");
 
