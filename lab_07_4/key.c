@@ -21,7 +21,7 @@ int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
         if (*(array_start+i) > average)
             ready_to_filter++;
 
-    printf("\nReady to filter %d object(-s):\n", ready_to_filter);
+    printf("\nAfter filter %d object(-s):\n", ready_to_filter);
 
     if (ready_to_filter == 0)
     {

@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     }
     fclose(f);
 
-    if (strcmp(argv[3], "f") == 0)
+    if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
         int size2 = key(array_orig, array_orig_end, array_for_filter, array_for_filter_end);
 
