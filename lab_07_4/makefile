@@ -7,6 +7,15 @@ test.o: test.c
 key.o: key.c
 	gcc -c key.c
 	
+output.o: output.c
+	gcc -c output.c
+	
+record.o: record.c
+	gcc -c record.c
+	
+tick.o: tick.c
+	gcc -c tick.c
+	
 mysort.o: mysort.c
 	gcc -c mysort.c
 	
@@ -25,8 +34,8 @@ get_size_test.o: get_size_test.c
 read_array_test.o: read_array_test.c
 	gcc -c read_array_test.c
 
-app.exe: main.o mysort.o key.o
-	gcc -o app.exe main.o mysort.o key.o
+app.exe: main.o mysort.o key.o output.o record.o tick.o
+	gcc -o app.exe main.o mysort.o key.o output.o record.o tick.o
 	
 test.exe: test.o mysort_test.o key_test.o get_pos_test.o get_size_test.o read_array_test.o
 	gcc -o test.exe test.o mysort_test.o key_test.o get_pos_test.o get_size_test.o read_array_test.o
