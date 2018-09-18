@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 void mysort(int *array_start, int *array_end)
 {
     int newElement, location;

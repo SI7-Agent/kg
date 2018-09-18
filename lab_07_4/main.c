@@ -5,13 +5,6 @@
 
 #include "functions.h"
 
-unsigned long long tick(void)
-{
-    unsigned long long d;
-    __asm__ __volatile__ ("rdtsc" : "=A" (d) );
-    return d;
-}
-
 int main(int argc, char *argv[])
 {
     unsigned long long tb, te;
@@ -93,8 +86,7 @@ int main(int argc, char *argv[])
         te = tick();
 
         printf("\nSorted array:\n");
-        for (int i = 0; i < size2; i++)
-            printf("%d\n", *(array_for_filter+i));
+        output(array_for_filter, array_for_filter_end);
 
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
 
@@ -105,10 +97,7 @@ int main(int argc, char *argv[])
         printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
 
         FILE *f_out = fopen(argv[2], "w");
-
-        for (int i = 0; i < size2; i++)
-            fprintf(f_out, "%d ", *(array_for_filter+i));
-
+        record(f_out, array_for_filter, array_for_filter_end);
         fclose(f_out);
     }
     else
@@ -118,8 +107,7 @@ int main(int argc, char *argv[])
         te = tick();
 
         printf("\nSorted array:\n");
-        for (int i = 0; i < size; i++)
-            printf("%d\n", *(array_orig+i));
+        output(array_orig, array_orig_end);
 
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
 
@@ -130,10 +118,7 @@ int main(int argc, char *argv[])
         printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
 
         FILE *f_out = fopen(argv[2], "w");
-
-        for (int i = 0; i < size; i++)
-            fprintf(f_out, "%d ", *(array_orig+i));
-
+        record(f_out, array_orig, array_orig_end);
         fclose(f_out);
     }
 
