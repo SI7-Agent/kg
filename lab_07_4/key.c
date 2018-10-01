@@ -17,7 +17,7 @@
 
 int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
 {
-    int start_orig = array_start;
+    int *start_orig = array_start;
     int size = array_end - array_start;
 
     int average = 0;
@@ -55,7 +55,7 @@ int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
     array2_start = (int *)realloc(array2_start, ready_to_filter*sizeof(int));
     array2_end = array2_start+ready_to_filter;
 
-    int start_orig2 = array2_start;
+    int *start_orig2 = array2_start;
 
     array_start = start_orig;
     int size2 = 0;
