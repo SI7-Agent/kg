@@ -1,6 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/**
+ Сортирует по возрастанию массив array_start.
+
+ * @param array_start
+ * @param array_end
+ */
+
 void mysort(int *array_start, int *array_end)
 {
     int *array_start_flag1;

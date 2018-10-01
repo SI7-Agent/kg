@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ Вычисляет размер массива, хранящийся в файле f.
+
+ * @param f
+ * @return возвращает размер массива, хранящийся в файле f.
+ */
+
 int get_size(FILE *f)
 {
     int size = 0;
