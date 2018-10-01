@@ -53,23 +53,25 @@ int main(int argc, char *argv[])
     int *array_orig = (int *)malloc(size*sizeof(int));
     int *array_orig_end = array_orig+size;
 
+    int array_start = array_orig;
+
     fseek(f, 0, SEEK_SET);
 
     int *array_for_filter = (int *)malloc(size*sizeof(int));
     int *array_for_filter_end = array_for_filter+size;
 
     printf("Read array:\n");
-    int i = 0;
     while(fscanf(f, "%d", &num) == 1)
     {
-        *(array_orig+i) = num;
-        printf("%d\n", *(array_orig+i));
-        i++;
+        *array_orig = num;
+        printf("%d\n", *array_orig);
+        array_orig++;
     }
     fclose(f);
 
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
+        array_orig = array_start;
         int size2 = key(array_orig, array_orig_end, array_for_filter, array_for_filter_end);
 
         if (size2 == -1)
@@ -102,21 +104,24 @@ int main(int argc, char *argv[])
     }
     else
     {
+        array_orig = array_start;
         tb = tick();
         mysort(array_orig, array_orig_end);
         te = tick();
 
+        array_orig = array_start;
         printf("\nSorted array:\n");
         output(array_orig, array_orig_end);
 
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
 
         tb = tick();
-        qsort(array_orig, size, sizeof(int), mysort);
+        //qsort(array_orig, size, sizeof(int), mysort);
         te = tick();
 
         printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
 
+        array_orig = array_start;
         FILE *f_out = fopen(argv[2], "w");
         record(f_out, array_orig, array_orig_end);
         fclose(f_out);
