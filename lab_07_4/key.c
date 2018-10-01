@@ -36,7 +36,7 @@ int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
     }
 
     if (ready_to_filter == 0)
-        return -1;
+        return -2;
 
     array2_start = (int *)realloc(array2_start, ready_to_filter*sizeof(int));
     array2_end = array2_start+ready_to_filter;
