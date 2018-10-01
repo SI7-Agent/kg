@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- ‘ильтрует указанным способом массив array_start,
+ Фильтрует указанным способом массив array_start,
  под полученное число элементов создаетс€ массив array2_start,
  в который копируютс€ элементы, удовлетвор€ющие фильтру.
 
@@ -50,7 +50,7 @@ int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
     }
 
     if (ready_to_filter == 0)
-        return -1;
+        return -2;
 
     array2_start = (int *)realloc(array2_start, ready_to_filter*sizeof(int));
     array2_end = array2_start+ready_to_filter;
