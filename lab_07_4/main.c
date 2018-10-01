@@ -5,11 +5,6 @@
 
 #include "functions.h"
 
-int comp (const int *i, const int *j)
-{
-    return *i - *j;
-}
-
 int main(int argc, char *argv[])
 {
     unsigned long long tb, te;
@@ -58,7 +53,7 @@ int main(int argc, char *argv[])
     int *array_orig = (int *)malloc(size*sizeof(int));
     int *array_orig_end = array_orig+size;
 
-    int array_start = array_orig;
+    int *array_start = array_orig;
 
     fseek(f, 0, SEEK_SET);
 
@@ -100,6 +95,12 @@ int main(int argc, char *argv[])
         tb = tick();
         qsort(array_for_filter, size2, sizeof(int), comp);
         te = tick();
+		
+		int q[15] = {5,3,2,7,8,65,4,3,34,56,34,1,23,43,22};
+		qsort(q, 15, sizeof(int), comp);
+		
+		for (int i = 0; i<15; i++)
+			printf("%d ", q[i]);
 
         printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
 
