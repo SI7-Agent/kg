@@ -4,7 +4,7 @@
 
 #include "functions.h"
 
-void main()
+int main()
 {
     printf("Reading normal file\n");
     FILE *f1 = fopen("in_1.txt", "r");
@@ -85,4 +85,6 @@ void main()
     else
         printf("\nTest failed\n");
     fclose(f4);
+	
+	return 0;
 }

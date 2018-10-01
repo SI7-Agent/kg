@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     int *array_orig = (int *)malloc(size*sizeof(int));
     int *array_orig_end = array_orig+size;
 
-    int array_start = array_orig;
+    int *array_start = array_orig;
 
     fseek(f, 0, SEEK_SET);
 
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
 
         tb = tick();
-        //qsort(array_orig, size, sizeof(int), mysort);
+        qsort(array_orig, size, sizeof(int), mysort);
         te = tick();
 
         printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
