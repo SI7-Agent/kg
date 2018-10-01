@@ -7,7 +7,7 @@ int get_size(FILE *f);
 void mysort(int *array_start, int *array_end);
 void output(int *array_start, int *array_end);
 void record (FILE *f, int *array_start, int *array_end);
-void read_array(FILE *f, int *array_orig);
+void read_array(FILE *f, int *array_orig, int *array_orig_end);
 unsigned long long tick(void);
 
 #endif
