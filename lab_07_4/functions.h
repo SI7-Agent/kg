@@ -4,7 +4,7 @@
 int key(int *array_start, int *array_end, int *array2_start, int *array2_end);
 int get_pos(FILE *f);
 int get_size(FILE *f);
-int comp (const int *i, const int *j);
+int comp_int(const void *i, const void *j);
 void mysort(int *array_start, int *array_end);
 void output(int *array_start, int *array_end);
 void record (FILE *f, int *array_start, int *array_end);

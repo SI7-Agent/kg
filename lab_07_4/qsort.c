@@ -9,7 +9,7 @@
  * @return возвращает либо число, большее 0, либо меньшее 0, либо 0.
  */
 
-int comp (const int *i, const int *j)
+int comp_int (const void *i, const void *j)
 {
-    return *i - *j;
+    return (int*)i - (int*)j;
 }
