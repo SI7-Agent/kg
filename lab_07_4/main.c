@@ -72,16 +72,13 @@ int main(int argc, char *argv[])
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
         array_orig = array_start;
-        int size2 = key(array_orig, array_orig_end, array_for_filter, array_for_filter_end);
+        int size2 = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
 
         if (size2 == -1)
         {
             printf("\nError in filter func");
             return -1;
         }
-
-        array_for_filter = (int *)realloc(array_for_filter, size2*sizeof(int));
-        array_for_filter_end = array_for_filter+size2;
 
         tb = tick();
         mysort(array_for_filter, array_for_filter_end);
@@ -95,14 +92,8 @@ int main(int argc, char *argv[])
         tb = tick();
         qsort(array_for_filter, size2, sizeof(int), comp_int);
         te = tick();
-		
-		int q[15] = {5,3,2,7,8,65,4,3,34,56,34,1,23,43,22};
-		qsort(q, 15, sizeof(int), comp_int);
-		
-		for (int i = 0; i<15; i++)
-			printf("%d ", q[i]);
 
-        printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
+        printf("Qsort time: %llu nsec\n", (te - tb) / 2);
 
         FILE *f_out = fopen(argv[2], "w");
         record(f_out, array_for_filter, array_for_filter_end);
@@ -125,7 +116,7 @@ int main(int argc, char *argv[])
         qsort(array_orig, size, sizeof(int), comp_int);
         te = tick();
 
-        printf("\nQsort time: %llu nsec\n", (te - tb) / 2);
+        printf("Qsort time: %llu nsec\n", (te - tb) / 2);
 
         array_orig = array_start;
         FILE *f_out = fopen(argv[2], "w");
