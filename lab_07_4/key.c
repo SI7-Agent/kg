@@ -15,7 +15,7 @@
  * или код ошибки в случае некорректных данных
  */
 
-int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
+int key(int *array_start, int *array_end, int **array2_start, int **array2_end)
 {
     int *start_orig = array_start;
     int size = array_end - array_start;
@@ -52,10 +52,10 @@ int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
     if (ready_to_filter == 0)
         return -2;
 
-    array2_start = (int *)realloc(array2_start, ready_to_filter*sizeof(int));
-    array2_end = array2_start+ready_to_filter;
+    *array2_start = (int *)realloc(*array2_start, ready_to_filter*sizeof(int));
+    *array2_end = *array2_start+ready_to_filter;
 
-    int *start_orig2 = array2_start;
+    int *start_orig2 = *array2_start;
 
     array_start = start_orig;
     int size2 = 0;
@@ -64,18 +64,16 @@ int key(int *array_start, int *array_end, int *array2_start, int *array2_end)
         if (*array_start > average)
         {
             int temp = *array_start;
-            *array2_start = temp;
+            *(start_orig2) = temp;
             size2++;
 
-            if (array2_start != array2_end)
-                array2_start++;
+            if (start_orig2 != *array2_end)
+                start_orig2++;
         }
 
         if (array_start != array_end)
             array_start++;
     }
-
-    array2_start = start_orig2;
 
     return ready_to_filter;
 }
