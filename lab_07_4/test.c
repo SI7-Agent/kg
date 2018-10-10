@@ -58,7 +58,7 @@ int main()
     int *array_for_filter2 = (int*)malloc(size*sizeof(int));
     int *array_for_filter_end2 = array_for_filter2 + size;
 
-    key_item = key(array_orig2, array_orig_end2, array_for_filter2, array_for_filter_end2);
+    key_item = key(array_orig2, array_orig_end2, &array_for_filter2, &array_for_filter_end2);
 
     if (key_item == -2)
         printf("Test passed\n\n");
