@@ -4,7 +4,7 @@
 #include <malloc.h>
 
 /**
- Считывает матрицу из файла.
+ CС‡РёС‚С‹РІР°РµС‚ РјР°С‚СЂРёС†Сѓ РёР· С„Р°Р№Р»Р°.
  * @brief fill_matrix
  * @param f
  * @param matr

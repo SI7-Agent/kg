@@ -4,7 +4,7 @@
 #include <malloc.h>
 
 /**
- Выводит матрицу на экран.
+ Р’С‹РІРѕРґРёС‚ РјР°С‚СЂРёС†Сѓ РЅР° СЌРєСЂР°РЅ.
  * @brief output
  * @param matr
  * @param rows
