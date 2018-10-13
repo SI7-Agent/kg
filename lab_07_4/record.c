@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- Записывает массив array_start в файл f.
+ Р—Р°РїРёСЃС‹РІР°РµС‚ РјР°СЃСЃРёРІ array_start РІ С„Р°Р№Р» f.
 
  * @param f
  * @param array_start

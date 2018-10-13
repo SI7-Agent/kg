@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- Сортирует по возрастанию массив array_start.
+ вЂ”РѕСЂС‚РёСЂСѓРµС‚ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ РјР°СЃСЃРёРІ array_start.
 
  * @param array_start
  * @param array_end

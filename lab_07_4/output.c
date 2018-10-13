@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- Выводит на экран массив array_start.
+ Р’С‹РІРѕРґРёС‚ РЅР° СЌРєСЂР°РЅ РјР°СЃСЃРёРІ array_start.
 
  * @param array_start
  * @param array_end

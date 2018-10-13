@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- Заполняет массив array_orig данными из файла f.
+ Р—Р°РїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ array_orig РґР°РЅРЅС‹РјРё РёР· С„Р°Р№Р»Р° f.
 
  * @param f
  * @param array_orig
