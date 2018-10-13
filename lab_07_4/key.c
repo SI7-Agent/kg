@@ -1,13 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+/*
+ * Фильтрует указанным способом массив array_start,
+под полученное число элементов создаетс€ массив array2_start,
+в который копируютс€ элементы, удовлетвор€ющие фильтру.
+*/
 /**
 Фильтрует указанным способом массив array_start,
 под полученное число элементов создаетс€ массив array2_start,
 в который копируютс€ элементы, удовлетвор€ющие фильтру.
 
 @param array_start
-@param array_end
+@param array_end 
 @param array2_start
 @param array2_end
 
