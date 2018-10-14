@@ -1,39 +1,32 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /**
- вЂ”РѕСЂС‚РёСЂСѓРµС‚ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ РјР°СЃСЃРёРІ array_start.
+ Сортирует по возрастанию массив array_start.
 
  * @param array_start
  * @param array_end
+ * @param size
  */
 
-void mysort(int *array_start, int *array_end)
+void mysort (void* array_start, void* array_end, size_t size, int (*compar)(const void*, const void*))
 {
-    int *array_start_flag1;
-    int *array_start_flag2;
-    array_start_flag1 = array_start;
-    array_start_flag2 = array_start;
-
-    int size = array_end - array_start;
-    int newElement, location;
-
-    for (int i = 1; i < size; i++)
+    void *newElement, *member = malloc(size*sizeof(void*)), *location, *base = array_start;
+    array_start += size;
+    for (; array_start < array_end; array_start += size)
     {
-        array_start_flag1 = array_start+i;
-
-        newElement = *array_start_flag1;
-        location = i - 1;
-
-        array_start_flag1 = array_start+location+1;
-        array_start_flag2 = array_start+location;
-        while(location >= 0 && *array_start_flag2 > newElement)
+        newElement = array_start;
+        memcpy(member, newElement, size);
+        location = array_start - size;
+        while(location >= base && compar(location, newElement) > 0)
         {
-            *array_start_flag1 = *array_start_flag2;
-            location = location - 1;
-            array_start_flag1 = array_start+location+1;
-            array_start_flag2 = array_start+location;
+            memcpy(member, newElement, size);
+            memcpy(newElement, location, size);
+            memcpy(location, member, size);
+            location -= size;
+            newElement -= size;
         }
-        *array_start_flag1 = newElement;
     }
+    free(member);
 }
