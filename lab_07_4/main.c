@@ -61,39 +61,35 @@ int main(int argc, char *argv[])
     int *array_for_filter_end = array_for_filter+size;
 
     printf("Read array:\n");
-    while(fscanf(f, "%d", &num) == 1)
-    {
-        *array_orig = num;
-        printf("%d\n", *array_orig);
-        array_orig++;
-    }
+    read_array(f, array_orig, array_orig_end);
+    output(array_orig, array_orig_end);
     fclose(f);
 
+    int flag = 0;
+    int size2;
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
+        flag = 1;
         array_orig = array_start;
-        int size2 = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
+        size2 = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
 
         if (size2 == -1)
         {
             printf("\nError in filter func");
             return -1;
         }
+    }
 
+    if (flag == 1)
+    {
         tb = tick();
-        mysort(array_for_filter, array_for_filter_end);
+        mysort(array_for_filter, array_for_filter_end, sizeof(int), comp_int);
         te = tick();
 
         printf("\nSorted array:\n");
         output(array_for_filter, array_for_filter_end);
 
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
-
-        tb = tick();
-        qsort(array_for_filter, size2, sizeof(int), comp_int);
-        te = tick();
-
-        printf("Qsort time: %llu nsec\n", (te - tb) / 2);
 
         FILE *f_out = fopen(argv[2], "w");
         record(f_out, array_for_filter, array_for_filter_end);
@@ -103,7 +99,7 @@ int main(int argc, char *argv[])
     {
         array_orig = array_start;
         tb = tick();
-        mysort(array_orig, array_orig_end);
+        mysort(array_orig, array_orig_end, sizeof(int), comp_int);
         te = tick();
 
         array_orig = array_start;
@@ -111,12 +107,6 @@ int main(int argc, char *argv[])
         output(array_orig, array_orig_end);
 
         printf("\nSort time: %llu nsec\n", (te - tb) / 2);
-
-        tb = tick();
-        qsort(array_orig, size, sizeof(int), comp_int);
-        te = tick();
-
-        printf("Qsort time: %llu nsec\n", (te - tb) / 2);
 
         array_orig = array_start;
         FILE *f_out = fopen(argv[2], "w");
