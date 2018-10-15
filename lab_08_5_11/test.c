@@ -4,7 +4,9 @@
 #include <malloc.h>
 #include <math.h>
 
-#include "functions.h"
+#include "get_matrix.h"
+#include "print_matrix.h"
+#include "operations.h"
 
 void determ_test(FILE *f)
 {
