@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <malloc.h>
 
-#include "functions.h"
+#include "get_matrix.h"
+#include "print_matrix.h"
+#include "operations.h"
 
 int main(int argc, char *argv[])
 {
