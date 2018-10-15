@@ -3,7 +3,12 @@
 #include <stdlib.h>
 #include <malloc.h>
 
-#include "functions.h"
+#include "read_array_test.h"
+#include "tick.h"
+#include "key.h"
+#include "get_size_test.h"
+#include "mysort.h"
+
 
 int main(int argc, char *argv[])
 {
