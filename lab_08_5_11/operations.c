@@ -8,13 +8,13 @@
 float static **p;
 
 /**
- Выполняет суммироование двух матриц.
+ Р’С‹РїРѕР»РЅСЏРµС‚ СЃСѓРјРјРёСЂРѕРѕРІР°РЅРёРµ РґРІСѓС… РјР°С‚СЂРёС†.
 
  * @param matr1
  * @param matr2
  * @param rows
  * @param cols
- * @return возвращает указатель на результирующую матрицу.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ.
  */
 
 float **get_sum(float **matr1, float **matr2, int rows, int cols)
@@ -29,14 +29,14 @@ float **get_sum(float **matr1, float **matr2, int rows, int cols)
 }
 
 /**
- Выполняет умножение двух матриц.
+ Р’С‹РїРѕР»РЅСЏРµС‚ СѓРјРЅРѕР¶РµРЅРёРµ РґРІСѓС… РјР°С‚СЂРёС†.
 
  * @param matr1
  * @param matr2
  * @param rows
  * @param cols
  * @param num1
- * @return возвращает указатель на результирующую матрицу.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ.
  */
 
 float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
@@ -56,7 +56,7 @@ float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
 }
 
 /**
- Преобразует исходную матрицу в матрицу без i-ой строки и j-ого столбца.
+ РџСЂРµРѕР±СЂР°Р·СѓРµС‚ РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ РІ РјР°С‚СЂРёС†Сѓ Р±РµР· i-РѕР№ СЃС‚СЂРѕРєРё Рё j-РѕРіРѕ СЃС‚РѕР»Р±С†Р°.
 
  * @param matr
  * @param p
@@ -84,12 +84,12 @@ void get_matr(float **matr, float **p, int i, int j, int m)
 }
 
 /**
- Вычисляет определитель матрицы.
+ Р’С‹С‡РёСЃР»СЏРµС‚ РѕРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹.
 
  * @param matr
  * @param m
  * @param size
- * @return возвращает значение определтеля.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РѕРїСЂРµРґРµР»С‚РµР»СЏ.
  */
 
 float determinant(float **matr, int m, int size)

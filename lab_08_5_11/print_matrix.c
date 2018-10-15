@@ -4,7 +4,7 @@
 #include <malloc.h>
 
 /**
- Выводит матрицу на экран.
+ Р’С‹РІРѕРґРёС‚ РјР°С‚СЂРёС†Сѓ РЅР° СЌРєСЂР°РЅ.
 
  * @param matr
  * @param rows
@@ -22,7 +22,7 @@ void output(float **matr, int rows, int cols)
 }
 
 /**
- Записывает матрицу в файл.
+ Р—Р°РїРёСЃС‹РІР°РµС‚ РјР°С‚СЂРёС†Сѓ РІ С„Р°Р№Р».
 
  * @param name_res
  * @param matr
@@ -48,7 +48,7 @@ void record_matr(char *name_res[], float **matr, int rows, int cols)
 }
 
 /**
- Записывает число в файл.
+ Р—Р°РїРёСЃС‹РІР°РµС‚ С‡РёСЃР»Рѕ РІ С„Р°Р№Р».
 
  * @param name_res
  * @param num
