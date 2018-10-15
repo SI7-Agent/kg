@@ -8,7 +8,7 @@ OBJ := mysort.o key.o tick.o read_array_test.o get_size_test.o
 app.exe: main.o $(OBJ)
 	$(CC) $(CFLAGS) -o app.exe main.o $(OBJ)
 	
-test.exe: test.o get $(OBJ)
+test.exe: test.o $(OBJ)
 	$(CC) $(CFLAGS) -o test.exe test.o $(OBJ)
 	
 clean:
