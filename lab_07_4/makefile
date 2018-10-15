@@ -1,11 +1,15 @@
-%.o : %.c *.h
-	gcc -std=c99 -Wall -Werror -pedantic -c $<
+CC := gcc
+CFLAGS := -std=c99 -Wall -Werror -pedantic
+OBJ := mysort.o key.o tick.o read_array_test.o get_size_test.o
 
-app.exe: main.o mysort.o key.o output.o record.o tick.o qsort.o read_array_test.o
-	gcc -std=c99 -Wall -Werror -pedantic -o app.exe main.o mysort.o key.o output.o record.o tick.o qsort.o read_array_test.o
+%.o : %.c *.h
+	$(CC) $(CFLAGS) -c $<
+
+app.exe: main.o $(OBJ)
+	$(CC) $(CFLAGS) -o app.exe main.o $(OBJ)
 	
-test.exe: test.o mysort.o key.o get_pos_test.o get_size_test.o read_array_test.o
-	gcc -std=c99 -Wall -Werror -pedantic -o test.exe test.o mysort.o key.o get_pos_test.o get_size_test.o read_array_test.o
+test.exe: test.o get $(OBJ)
+	$(CC) $(CFLAGS) -o test.exe test.o $(OBJ)
 	
 clean:
 	del *.o *.exe
