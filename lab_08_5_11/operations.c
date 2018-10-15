@@ -1,11 +1,11 @@
-float static **p;
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <malloc.h>
 
 #include "get_matrix.h"
+
+float static **p;
 
 /**
  Выполняет суммироование двух матриц.
