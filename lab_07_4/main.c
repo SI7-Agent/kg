@@ -25,15 +25,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    int num;
-    int size = 0;
-
-    while(fscanf(f, "%d", &num) == 1)
-    {
-        pos = ftell(f);
-        size++;
-    }
-
+    int size = get_size(f);
     if (size == 0)
     {
         printf("File is empty/contains incorrect data.\n");
@@ -45,6 +37,7 @@ int main(int argc, char *argv[])
 
     fseek(f, 0, SEEK_END);
     pos_end = ftell(f);
+    pos = get_pos(f);
 
     if (pos != pos_end)
     {
