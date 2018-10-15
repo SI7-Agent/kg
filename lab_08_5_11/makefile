@@ -1,11 +1,15 @@
-%.o : %.c *.h
-	gcc -std=c99 -Wall -Werror -pedantic -c $<
+CC := gcc
+CFLAGS := -std=c99 -Wall -Werror -pedantic
+OBJ := get_matrix.o operations.o print_matrix.o
 
-app.exe: main.o output.o get_sum.o get_multy.o get_determ.o fill_matrix.o allocate_matrix.o record.o
-	gcc -std=c99 -Wall -Werror -pedantic -o app.exe main.o output.o get_sum.o get_multy.o get_determ.o fill_matrix.o allocate_matrix.o record.o
+%.o : %.c *.h
+	$(CC) $(CFLAGS) -c $<
+
+app.exe: main.o $(OBJ)
+	$(CC) $(CFLAGS) -o app.exe main.o $(OBJ)
 	
-test.exe: test.o
-	gcc -std=c99 -Wall -Werror -pedantic -o test.exe test.o
+test.exe: test.o $(OBJ)
+	$(CC) $(CFLAGS) -o test.exe test.o
 	
 clean:
 	del *.o *.exe
