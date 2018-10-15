@@ -1,0 +1,1 @@
+int key(int *array_start, int *array_end, int **array2_start, int **array2_end);
