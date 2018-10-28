@@ -8,7 +8,7 @@
 
  * @param rows
  * @param cols
- * @return возвращает указатель на начало массива указателей.
+ * @return возвращает указатель на начало массива указателей, в случае, если память не выделилась, возвращает NULL.
  */
 
 float **allocate_matrix(int rows, int cols)
@@ -16,7 +16,17 @@ float **allocate_matrix(int rows, int cols)
     float **ptrs, *data;
 
     ptrs = malloc(rows * sizeof(float*));
+	
+	if (!ptrs)
+		return NULL;
+	
     data = malloc(rows * cols * sizeof(float));
+	
+	if (!data)
+	{
+		free(ptrs);
+		return NULL;
+	}
 
     for (int i = 0; i < rows; i++)
         ptrs[i] = data + i * cols;
@@ -42,4 +52,19 @@ void fill_matrix(FILE *f, float **matr, int rows, int cols)
             fscanf(f, "%f", &tmp);
             matr[i][j] = tmp;
         }
+}
+
+/**
+ Очищает память под матрицу.
+
+ * @param matr
+ */
+
+void free_matrix(float **matr)
+{
+	if (matr == NULL)
+		return;
+	
+	free(matr[0]);
+	free(matr);
 }
