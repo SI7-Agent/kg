@@ -5,7 +5,7 @@
 
 #include "get_matrix.h"
 
-float static **p;
+float static **p = NULL;
 
 /**
  Выполняет суммироование двух матриц.
@@ -20,6 +20,9 @@ float static **p;
 float **get_sum(float **matr1, float **matr2, int rows, int cols)
 {
     float **result = allocate_matrix(rows, cols);
+	
+	if (!result)
+		return NULL;
 
     for (int i = 0; i < rows; i++)
         for (int j = 0; j < cols; j++)
@@ -36,12 +39,15 @@ float **get_sum(float **matr1, float **matr2, int rows, int cols)
  * @param rows
  * @param cols
  * @param num1
- * @return возвращает указатель на результирующую матрицу.
+ * @return возвращает указатель на результирующую матрицу, в случае, если память не выделилась, возвращает NULL.
  */
 
 float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
 {
     float **result = allocate_matrix(rows, cols);
+	
+	if (result == NULL)
+		return NULL;
 
     for (int i = 0; i < rows; i++)
         for (int j = 0; j < cols; j++)
@@ -89,28 +95,30 @@ void get_matr(float **matr, float **p, int i, int j, int m)
  * @param matr
  * @param m
  * @param size
- * @return возвращает значение определтеля.
+ * @return возвращает значение определителя, в случае, если под вспомогательную матрицу память не выделилась, возвращает -1.
  */
 
 float determinant(float **matr, int m, int size)
 {
     int i, d, k, n;
     if (m == size)
-    {
-        p = (float**)malloc(m*sizeof(float*));
-        for (i = 0; i<m; i++)
-            p[i] = (float*)malloc(m*sizeof(float));
-    }
+        p = allocate_matrix(m, m);
+
     else if (m > 2)
     {
-        for (int i = 0; i<m; i++)
-            free(p[i]);
+        free(p[0]);
         free(p);
 
-        p = (float**)malloc(m*sizeof(float*));
-        for (i = 0; i<m; i++)
-            p[i] = (float*)malloc(m*sizeof(float));
+        p = allocate_matrix(m, m);
     }
+	
+	if (p == NULL)
+	{
+		FILE *f_error = fopen("error.txt", "w");
+		fprintf(f_error, "%s", "allocat_error");
+		fclose(f_error);
+		return -1;
+	}
 
     d = 0;
     k = 1;
@@ -134,8 +142,8 @@ float determinant(float **matr, int m, int size)
             k = -k;
         }
     }
-    for (int i = 0; i<m; i++)
-        free(p[i]);
+
+    free(p[0]);
     free(p);
     return d;
 }
