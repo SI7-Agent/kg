@@ -7,63 +7,83 @@
 #include "print_matrix.h"
 #include "operations.h"
 
+/**
+ Выполняет операцию сложения матриц со всеми проверками от получения файла второй матрицы до печати результата в файл.
+
+ * @param matr1
+ * @param matrix1
+ * @param rows1
+ * @param cols1
+ * @param argv
+ */
+
 void make_sum(FILE *matr1, float **matrix1, int rows1, int cols1, char *argv[])
 {
 	output(matrix1, rows1, cols1);
-    FILE *matr2 = fopen(argv[3], "r");
+        FILE *matr2 = fopen(argv[3], "r");
 		
-	if (!matr2)
-	{
-		printf("Error opening file\n");
-		free_matrix(matrix1);
-		return ;
-	}
+		if (!matr2)
+		{
+			printf("Error opening file\n");
+			free_matrix(matrix1);
+			return ;
+		}
 		
-    int rows2; int cols2;
+        int rows2; int cols2;
 
-    fscanf(matr2, "%d", &rows2);
-    fscanf(matr2, "%d", &cols2);
+        fscanf(matr2, "%d", &rows2);
+        fscanf(matr2, "%d", &cols2);
 
-    printf("\n");
-    float **matrix2 = allocate_matrix(rows2, cols2);
+        printf("\n");
+        float **matrix2 = allocate_matrix(rows2, cols2);
 		
-	if (matrix2 == NULL)
-	{
-		printf("Allocation error\n");
-		free_matrix(matrix1);
-		return ;
-	}
+		if (matrix2 == NULL)
+		{
+			printf("Allocation error\n");
+			free_matrix(matrix1);
+			return ;
+		}
 	
-    fill_matrix(matr2, matrix2, rows2, cols2);
-    output(matrix2, rows2, cols2);
-    printf("\n");
+        fill_matrix(matr2, matrix2, rows2, cols2);
+        output(matrix2, rows2, cols2);
+        printf("\n");
 
-    if ((rows1 != rows2) || (cols1 != cols2))
-    {
-        printf("\nERROR! Wrong sizes of matrixes\n");
-        free_matrix(matrix1);
-        fclose(matr1);
+        if ((rows1 != rows2) || (cols1 != cols2))
+        {
+            printf("\nERROR! Wrong sizes of matrixes\n");
+            free_matrix(matrix1);
+            fclose(matr1);
+
+            free_matrix(matrix2);
+            fclose(matr2);
+            return ;
+        }
+        float **res = get_sum(matrix1, matrix2, rows1, cols1);
+		
+		if (res == NULL)
+		{
+			printf("Allocation error\n");
+			return ;
+		}
+		
+        output(res, rows1, cols1);
+        record_matr(argv, res, rows1, cols1);
+
+        free_matrix(res);
 
         free_matrix(matrix2);
         fclose(matr2);
-        return ;
-    }
-    float **res = get_sum(matrix1, matrix2, rows1, cols1);
-		
-	if (res == NULL)
-	{
-		printf("Allocation error\n");
-		return ;
-	}
-		
-    output(res, rows1, cols1);
-    record_matr(argv, res, rows1, cols1);
-
-    free_matrix(res);
-
-    free_matrix(matrix2);
-    fclose(matr2);
 }
+
+/**
+ Выполняет операцию умножения матриц со всеми проверками от получения файла второй матрицы до печати результата в файл.
+
+ * @param matr1
+ * @param matrix1
+ * @param rows1
+ * @param cols1
+ * @param argv
+ */
 
 void make_multy(FILE *matr1, float **matrix1, int rows1, int cols1, char *argv[])
 {
@@ -121,6 +141,16 @@ void make_multy(FILE *matr1, float **matrix1, int rows1, int cols1, char *argv[]
     fclose(matr2);	
 }
 
+/**
+ Выполняет операцию вычисления детерминанта со всеми проверками до печати результата в файл.
+
+ * @param matr1
+ * @param matrix1
+ * @param rows1
+ * @param cols1
+ * @param argv
+ */
+
 void make_det(FILE *matr1, float **matrix1, int rows1, int cols1, char *argv[])
 {
 	output(matrix1, rows1, cols1);
@@ -132,22 +162,15 @@ void make_det(FILE *matr1, float **matrix1, int rows1, int cols1, char *argv[])
         return ;
     }
 
-	FILE *f_error = fopen("error.txt", "w");
-	fclose(f_error);
     float determ = determinant(matrix1, rows1, rows1);
-	
-	f_error = fopen("error.txt", "r");
-	
-	char error[15];
-	fscanf(f_error, "%s", error);
-	if (strcmp(error, "allocat_error") == 0)
-	{
-		printf("Error while computing determinator\n");
-		return;
-	}
-	
     record_num(argv, determ);
 }
+
+/**
+ Выполняет операцию вывода справочной информации.
+
+ * @param argv
+ */
 
 void make_info(char *argv[])
 {
