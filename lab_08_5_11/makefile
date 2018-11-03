@@ -12,4 +12,4 @@ test.exe: test.o $(OBJ)
 	$(CC) $(CFLAGS) -o test.exe test.o $(OBJ)
 	
 clean:
-	del *.o *.exe
+	del *.o *.gch *.exe
