@@ -35,22 +35,21 @@ void record_matr(char *name_res[], float **matr, int rows, int cols)
     FILE *f_res = fopen(name_res[4], "w");
 	
 	if (!f_res)
-	{
 		printf("Error opening file\n");
-		return;
-	}
-
-    fprintf(f_res, "%d ", rows);
-    fprintf(f_res, "%d\n", cols);
-
-    for (int i = 0; i < rows; i++)
+    else
     {
-        for (int j = 0; j < cols; j++)
-            fprintf(f_res, "%8.2f", matr[i][j]);
-        fprintf(f_res, "\n");
-    }
+        fprintf(f_res, "%d ", rows);
+        fprintf(f_res, "%d\n", cols);
 
-    fclose(f_res);
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+                fprintf(f_res, "%8.2f", matr[i][j]);
+            fprintf(f_res, "\n");
+        }
+
+        fclose(f_res);
+    }
 }
 
 /**
@@ -65,12 +64,10 @@ void record_num(char *name_res[], float num)
     FILE *f_res = fopen(name_res[3], "w");
 	
 	if (!f_res)
-	{
 		printf("Error opening file\n");
-		return;
-	}
-
-    fprintf(f_res, "%.2f", num);
-
-    fclose(f_res);
+    else
+    {
+        fprintf(f_res, "%.2f", num);
+        fclose(f_res);
+    }
 }
