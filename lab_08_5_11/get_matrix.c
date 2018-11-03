@@ -17,13 +17,17 @@ float **allocate_matrix(int rows, int cols)
 
     ptrs = malloc(rows * sizeof(float*));
 	
-	if (!ptrs)
-		return NULL;
+    if (!ptrs)
+    {
+        printf("Allocation error\n");
+        return NULL;
+    }
 	
     data = malloc(rows * cols * sizeof(float));
 	
 	if (!data)
 	{
+        printf("Allocation error\n");
 		free(ptrs);
 		return NULL;
 	}
@@ -43,15 +47,33 @@ float **allocate_matrix(int rows, int cols)
  * @param cols
  */
 
-void fill_matrix(FILE *f, float **matr, int rows, int cols)
+float **fill_matrix(FILE *f, int *rows, int *cols)
 {
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < cols; j++)
-        {
-            float tmp;
-            fscanf(f, "%f", &tmp);
-            matr[i][j] = tmp;
-        }
+    int row;
+    int col;
+
+    fscanf(f, "%d", &row);
+    fscanf(f, "%d", &col);
+
+    float **matrix = allocate_matrix(row, col);
+
+    if (!matrix)
+        ;
+    else
+    {
+        for (int i = 0; i < row; i++)
+            for (int j = 0; j < col; j++)
+            {
+                float tmp;
+                fscanf(f, "%f", &tmp);
+                matrix[i][j] = tmp;
+            }
+
+        *rows = row;
+        *cols = col;
+    }
+
+    return matrix;
 }
 
 /**
@@ -62,9 +84,11 @@ void fill_matrix(FILE *f, float **matr, int rows, int cols)
 
 void free_matrix(float **matr)
 {
-	if (matr == NULL)
-		return;
-	
-	free(matr[0]);
-	free(matr);
+    if ((matr == NULL) || (matr[0] == NULL))
+        printf("Error in free function\n");
+    else
+    {
+        free(matr[0]);
+        free(matr);
+    }
 }
