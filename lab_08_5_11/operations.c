@@ -5,8 +5,6 @@
 
 #include "get_matrix.h"
 
-float static **p = NULL;
-
 /**
  Выполняет суммироование двух матриц.
 
@@ -95,55 +93,50 @@ void get_matr(float **matr, float **p, int i, int j, int m)
  * @param matr
  * @param m
  * @param size
- * @return возвращает значение определителя, в случае, если под вспомогательную матрицу память не выделилась, возвращает -1.
+ * @return возвращает значение определтеля.
  */
 
-float determinant(float **matr, int m, int size)
+float determinant(float **matr, int m, int size, int *err)
 {
+    float **p = NULL;
     int i, d, k, n;
     if (m == size)
         p = allocate_matrix(m, m);
 
     else if (m > 2)
     {
-        free(p[0]);
-        free(p);
-
+        free_matrix(p);
         p = allocate_matrix(m, m);
     }
-	
-	if (p == NULL)
-	{
-		FILE *f_error = fopen("error.txt", "w");
-		fprintf(f_error, "%s", "allocat_error");
-		fclose(f_error);
-		return -1;
-	}
 
-    d = 0;
-    k = 1;
-    n = m - 1;
-    if (m == 1)
+    if (!p)
+        *err = 1;
+    else
     {
-        d = matr[0][0];
-        return d;
-    }
-    if (m == 2)
-    {
-        d = matr[0][0] * matr[1][1] - (matr[1][0] * matr[0][1]);
-        return d;
-    }
-    if (m>2)
-    {
-        for (i = 0; i<m; i++)
+        d = 0;
+        k = 1;
+        n = m - 1;
+        if (m == 1)
         {
-            get_matr(matr, p, i, 0, m);
-            d = d + k * matr[i][0] * determinant(p, n, m);
-            k = -k;
+            d = matr[0][0];
+            return d;
         }
-    }
+        if (m == 2)
+        {
+            d = matr[0][0] * matr[1][1] - (matr[1][0] * matr[0][1]);
+            return d;
+        }
+        if (m>2)
+        {
+            for (i = 0; i<m; i++)
+            {
+                get_matr(matr, p, i, 0, m);
+                d = d + k * matr[i][0] * determinant(p, n, m, err);
+                k = -k;
+            }
+        }
 
-    free(p[0]);
-    free(p);
+        free_matrix(p);
+    }
     return d;
 }
