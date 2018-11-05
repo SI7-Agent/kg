@@ -25,12 +25,12 @@ float **allocate_matrix(int rows, int cols)
 	
     data = malloc(rows * cols * sizeof(float));
 	
-	if (!data)
-	{
+    if (!data)
+    {
         printf("Allocation error\n");
-		free(ptrs);
-		return NULL;
-	}
+        free(ptrs);
+        return NULL;
+    }
 
     for (int i = 0; i < rows; i++)
         ptrs[i] = data + i * cols;
