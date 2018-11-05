@@ -8,7 +8,7 @@
 #include "operations.h"
 
 /**
- Выполняет операцию сложения матриц со всеми проверками от получения файла второй матрицы до печати результата в файл.
+ Р’С‹РїРѕР»РЅСЏРµС‚ РѕРїРµСЂР°С†РёСЋ СЃР»РѕР¶РµРЅРёСЏ РјР°С‚СЂРёС† СЃРѕ РІСЃРµРјРё РїСЂРѕРІРµСЂРєР°РјРё РѕС‚ РїРѕР»СѓС‡РµРЅРёСЏ С„Р°Р№Р»Р° РІС‚РѕСЂРѕР№ РјР°С‚СЂРёС†С‹ РґРѕ РїРµС‡Р°С‚Рё СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ С„Р°Р№Р».
 
  * @param matrix1
  * @param rows1
@@ -18,7 +18,7 @@
 
 void make_sum(float **matrix1, int rows1, int cols1, char *argv[])
 {
-	output(matrix1, rows1, cols1);
+    output(matrix1, rows1, cols1);
     FILE *matr2 = fopen(argv[3], "r");
 		
     if (!matr2)
@@ -64,7 +64,7 @@ void make_sum(float **matrix1, int rows1, int cols1, char *argv[])
 }
 
 /**
- Выполняет операцию умножения матриц со всеми проверками от получения файла второй матрицы до печати результата в файл.
+ Р’С‹РїРѕР»РЅСЏРµС‚ РѕРїРµСЂР°С†РёСЋ СѓРјРЅРѕР¶РµРЅРёСЏ РјР°С‚СЂРёС† СЃРѕ РІСЃРµРјРё РїСЂРѕРІРµСЂРєР°РјРё РѕС‚ РїРѕР»СѓС‡РµРЅРёСЏ С„Р°Р№Р»Р° РІС‚РѕСЂРѕР№ РјР°С‚СЂРёС†С‹ РґРѕ РїРµС‡Р°С‚Рё СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ С„Р°Р№Р».
 
  * @param matrix1
  * @param rows1
@@ -74,11 +74,11 @@ void make_sum(float **matrix1, int rows1, int cols1, char *argv[])
 
 void make_multy(float **matrix1, int rows1, int cols1, char *argv[])
 {
-	output(matrix1, rows1, cols1);
+    output(matrix1, rows1, cols1);
     FILE *matr2 = fopen(argv[3], "r");
 	
-	if (!matr2)
-		printf("Error opening file\n");
+    if (!matr2)
+        printf("Error opening file\n");
     else
     {
         int rows2;
@@ -116,7 +116,7 @@ void make_multy(float **matrix1, int rows1, int cols1, char *argv[])
 }
 
 /**
- Выполняет операцию вычисления детерминанта со всеми проверками до печати результата в файл.
+ Р’С‹РїРѕР»РЅСЏРµС‚ РѕРїРµСЂР°С†РёСЋ РІС‹С‡РёСЃР»РµРЅРёСЏ РґРµС‚РµСЂРјРёРЅР°РЅС‚Р° СЃРѕ РІСЃРµРјРё РїСЂРѕРІРµСЂРєР°РјРё РґРѕ РїРµС‡Р°С‚Рё СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ С„Р°Р№Р».
 
  * @param matrix1
  * @param rows1
@@ -126,7 +126,7 @@ void make_multy(float **matrix1, int rows1, int cols1, char *argv[])
 
 void make_det(float **matrix1, int rows1, int cols1, char *argv[])
 {
-	output(matrix1, rows1, cols1);
+    output(matrix1, rows1, cols1);
     if (rows1 != cols1)
     {
         printf("\nERROR! Nums of rows not equal nums of cols\n");
@@ -144,15 +144,15 @@ void make_det(float **matrix1, int rows1, int cols1, char *argv[])
 }
 
 /**
- Выполняет операцию вывода справочной информации.
+ Р’С‹РїРѕР»РЅСЏРµС‚ РѕРїРµСЂР°С†РёСЋ РІС‹РІРѕРґР° СЃРїСЂР°РІРѕС‡РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё.
 
  */
 
 void make_info()
 {
-	FILE *f_info = fopen("info.txt", "r");
+    FILE *f_info = fopen("info.txt", "r");
 		
-	if (!f_info)
+    if (!f_info)
         printf("Error opening info file\n");
     else
     {
