@@ -19,7 +19,7 @@ float **get_sum(float **matr1, float **matr2, int rows, int cols)
 {
     float **result = allocate_matrix(rows, cols);
 	
-	if (!result)
+    if (!result)
         result = NULL;
     else
     {
@@ -128,18 +128,18 @@ float determinant(float **matr, int m, int size, int *err)
     }
     if (m > 2)
 	{
-		if (p)
-		{
-			for (i = 0; i<m; i++)
-			{
-				get_matr(matr, p, i, 0, m);
-				d = d + k * matr[i][0] * determinant(p, n, m, err);
-				k = -k;
-			}
-		}
-		else
-			*err = 1;
-	}
-	free_matrix(p);
+        if (p)
+        {
+            for (i = 0; i<m; i++)
+            {
+                get_matr(matr, p, i, 0, m);
+                d = d + k * matr[i][0] * determinant(p, n, m, err);
+                k = -k;
+            }
+        }
+        else
+            *err = 1;
+    }
+    free_matrix(p);
     return d;
 }
