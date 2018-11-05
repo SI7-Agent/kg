@@ -20,11 +20,13 @@ float **get_sum(float **matr1, float **matr2, int rows, int cols)
     float **result = allocate_matrix(rows, cols);
 	
 	if (!result)
-		return NULL;
-
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < cols; j++)
-            result[i][j] = matr1[i][j] + matr2[i][j];
+        result = NULL;
+    else
+    {
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                result[i][j] = matr1[i][j] + matr2[i][j];
+    }
 
     return result;
 }
@@ -44,17 +46,19 @@ float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
 {
     float **result = allocate_matrix(rows, cols);
 	
-	if (result == NULL)
-		return NULL;
-
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < cols; j++)
-        {
-            float tmp = 0;
-            for (int k = 0; k < num1; k++)
-                tmp += matr1[i][k] * matr2[k][j];
-            result[i][j] = tmp;
-        }
+    if (!result)
+        result = NULL;
+    else
+    {
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+            {
+                float tmp = 0;
+                for (int k = 0; k < num1; k++)
+                    tmp += matr1[i][k] * matr2[k][j];
+                result[i][j] = tmp;
+            }
+    }
 
     return result;
 }
@@ -100,43 +104,42 @@ float determinant(float **matr, int m, int size, int *err)
 {
     float **p = NULL;
     int i, d, k, n;
+
     if (m == size)
         p = allocate_matrix(m, m);
-
     else if (m > 2)
     {
         free_matrix(p);
         p = allocate_matrix(m, m);
     }
-
-    if (!p)
-        *err = 1;
-    else
+    
+    d = 0;
+    k = 1;
+    n = m - 1;
+    if (m == 1)
     {
-        d = 0;
-        k = 1;
-        n = m - 1;
-        if (m == 1)
-        {
-            d = matr[0][0];
-            return d;
-        }
-        if (m == 2)
-        {
-            d = matr[0][0] * matr[1][1] - (matr[1][0] * matr[0][1]);
-            return d;
-        }
-        if (m>2)
-        {
-            for (i = 0; i<m; i++)
-            {
-                get_matr(matr, p, i, 0, m);
-                d = d + k * matr[i][0] * determinant(p, n, m, err);
-                k = -k;
-            }
-        }
-
-        free_matrix(p);
+        d = matr[0][0];
+        return d;
     }
+    if (m == 2)
+    {
+        d = matr[0][0] * matr[1][1] - (matr[1][0] * matr[0][1]);
+        return d;
+    }
+    if (m > 2)
+	{
+		if (p)
+		{
+			for (i = 0; i<m; i++)
+			{
+				get_matr(matr, p, i, 0, m);
+				d = d + k * matr[i][0] * determinant(p, n, m, err);
+				k = -k;
+			}
+		}
+		else
+			*err = 1;
+	}
+	free_matrix(p);
     return d;
 }

@@ -10,7 +10,6 @@
 /**
  Выполняет операцию сложения матриц со всеми проверками от получения файла второй матрицы до печати результата в файл.
 
- * @param matr1
  * @param matrix1
  * @param rows1
  * @param cols1
@@ -67,7 +66,6 @@ void make_sum(float **matrix1, int rows1, int cols1, char *argv[])
 /**
  Выполняет операцию умножения матриц со всеми проверками от получения файла второй матрицы до печати результата в файл.
 
- * @param matr1
  * @param matrix1
  * @param rows1
  * @param cols1
@@ -120,7 +118,6 @@ void make_multy(float **matrix1, int rows1, int cols1, char *argv[])
 /**
  Выполняет операцию вычисления детерминанта со всеми проверками до печати результата в файл.
 
- * @param matr1
  * @param matrix1
  * @param rows1
  * @param cols1
