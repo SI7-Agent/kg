@@ -127,7 +127,7 @@ float determinant(float **matr, int m, int size, int *err)
         return d;
     }
     if (m > 2)
-	{
+    {
         if (p)
         {
             for (i = 0; i<m; i++)
