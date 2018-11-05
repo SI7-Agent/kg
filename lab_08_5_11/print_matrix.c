@@ -34,8 +34,8 @@ void record_matr(char *name_res[], float **matr, int rows, int cols)
 {
     FILE *f_res = fopen(name_res[4], "w");
 	
-	if (!f_res)
-		printf("Error opening file\n");
+    if (!f_res)
+        printf("Error opening file\n");
     else
     {
         fprintf(f_res, "%d ", rows);
@@ -63,8 +63,8 @@ void record_num(char *name_res[], float num)
 {
     FILE *f_res = fopen(name_res[3], "w");
 	
-	if (!f_res)
-		printf("Error opening file\n");
+    if (!f_res)
+        printf("Error opening file\n");
     else
     {
         fprintf(f_res, "%.2f", num);
