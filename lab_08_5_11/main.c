@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 {
     FILE *matr1 = fopen(argv[2], "r");
 	
-	if (!matr1)
-		printf("Error opening file\n");
+    if (!matr1)
+        printf("Error opening file\n");
     else
     {
         int rows1;
