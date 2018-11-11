@@ -35,7 +35,7 @@ void mysort (void* array_start, void* array_end, size_t size, int (*compar)(cons
 }
 
 /**
- —равнивает два элемента.
+ Cравнивает два элемента.
 
  * @param i
  * @param j
