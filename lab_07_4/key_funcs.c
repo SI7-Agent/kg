@@ -1,11 +1,11 @@
 /**
- Вычисляет среднее значение элементов данного массива.
+ Р’С‹С‡РёСЃР»СЏРµС‚ СЃСЂРµРґРЅРµРµ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РґР°РЅРЅРѕРіРѕ РјР°СЃСЃРёРІР°.
 
  * @param array_start
  * @param array_end
  * @param start_orig
  * @param size
- * @return возвращает среднее значение элементов данного массива.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СЃСЂРµРґРЅРµРµ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РґР°РЅРЅРѕРіРѕ РјР°СЃСЃРёРІР°.
  */
 
 int get_average(int *array_start, int *array_end, int *start_orig, int size)
@@ -24,14 +24,14 @@ int get_average(int *array_start, int *array_end, int *start_orig, int size)
 }
 
 /**
- Вычисляет число элементов, пригодных для фильтрации.
+ Р’С‹С‡РёСЃР»СЏРµС‚ С‡РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ, РїСЂРёРіРѕРґРЅС‹С… РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё.
 
  * @param array_start
  * @param array_end
  * @param start_orig
  * @param size
  * @param average
- * @return возвращает число элементов, пригодных для фильтрации.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ С‡РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ, РїСЂРёРіРѕРґРЅС‹С… РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё.
  */
 
 int get_filt_elems(int *array_start, int *array_end, int *start_orig, int size, int average)
@@ -50,7 +50,7 @@ int get_filt_elems(int *array_start, int *array_end, int *start_orig, int size, 
 }
 
 /**
- Копирует элементы, пригодные для фильтрации, в отдельный массив.
+ РљРѕРїРёСЂСѓРµС‚ СЌР»РµРјРµРЅС‚С‹, РїСЂРёРіРѕРґРЅС‹Рµ РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё, РІ РѕС‚РґРµР»СЊРЅС‹Р№ РјР°СЃСЃРёРІ.
 
  * @param array_start
  * @param array_end
