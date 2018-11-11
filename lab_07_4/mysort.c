@@ -3,7 +3,7 @@
 #include <string.h>
 
 /**
- CРѕСЂС‚РёСЂСѓРµС‚ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ РјР°СЃСЃРёРІ array_start.
+ Cортирует по возрастанию массив array_start.
 
  * @param array_start
  * @param array_end
@@ -13,9 +13,9 @@
 void mysort (void* array_start, void* array_end, size_t size, int (*compar)(const void*, const void*))
 {
     void *member = malloc(size*sizeof(void*)), *base = array_start;
-	char *newElement, *location;
-	char *start = (char*)array_start;
-	char *end = (char*)array_end;
+    char *newElement, *location;
+    char *start = (char*)array_start;
+    char *end = (char*)array_end;
     start += size;
     for (; start < end; start += size)
     {
@@ -35,11 +35,11 @@ void mysort (void* array_start, void* array_end, size_t size, int (*compar)(cons
 }
 
 /**
- РЎСЂР°РІРЅРёРІР°РµС‚ РґРІР° СЌР»РµРјРµРЅС‚Р°.
+ Сравнивает два элемента.
 
  * @param i
  * @param j
- * @return РІРѕР·РІСЂР°С‰Р°РµС‚ Р»РёР±Рѕ С‡РёСЃР»Рѕ, Р±РѕР»СЊС€РµРµ 0, Р»РёР±Рѕ РјРµРЅСЊС€РµРµ 0, Р»РёР±Рѕ 0.
+ * @return возвращает либо число, большее 0, либо меньшее 0, либо 0.
  */
 
 int comp_int (const void *i, const void *j)
