@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "key_funcs.h"
 
 /**
  Фильтрует указанным способом массив array_start,
@@ -19,60 +20,31 @@ int key(int *array_start, int *array_end, int **array2_start, int **array2_end)
 {
     int *start_orig = array_start;
     int size = array_end - array_start;
-
-    int average = 0;
     int ready_to_filter = 0;
 
     if (size == 0)
     {
-        printf ("Incorrect Data");
-        return -1;
+        printf ("Incorrect data");
+        ready_to_filter = -1;
     }
-
-    array_start = start_orig;
-    for (int i = 0; i < size; i++)
+    else
     {
-        average = average + *array_start;
-        if (array_start != array_end)
-            array_start++;
-    }
+        int average = get_average(array_start, array_end, start_orig, size);
+        int ready_to_filter = get_filt_elems(array_start, array_end, start_orig, size, average);
 
-    average = average/size;
-
-    array_start = start_orig;
-    for (int i = 0; i < size; i++)
-    {
-        if (*array_start > average)
-            ready_to_filter++;
-
-        if (array_start != array_end)
-            array_start++;
-    }
-
-    if (ready_to_filter == 0)
-        return -2;
-
-    *array2_start = (int *)realloc(*array2_start, ready_to_filter*sizeof(int));
-    *array2_end = *array2_start+ready_to_filter;
-
-    int *start_orig2 = *array2_start;
-
-    array_start = start_orig;
-    int size2 = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if (*array_start > average)
+        if (ready_to_filter == 0)
         {
-            int temp = *array_start;
-            *(start_orig2) = temp;
-            size2++;
-
-            if (start_orig2 != *array2_end)
-                start_orig2++;
+            printf ("No elements for filter\n");
+            ready_to_filter = -2;
         }
+        else
+        {
+            *array2_start = (int *)realloc(*array2_start, ready_to_filter*sizeof(int));
+            *array2_end = *array2_start+ready_to_filter;
 
-        if (array_start != array_end)
-            array_start++;
+            int *start_orig2 = *array2_start;
+            get_array_for_filter(array_start, array_end, start_orig, size, average, start_orig2, *array2_end);
+        }
     }
 
     return ready_to_filter;
