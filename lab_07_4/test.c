@@ -7,6 +7,7 @@
 #include "key.h"
 #include "get_size_test.h"
 #include "mysort.h"
+#include "do_filter.h"
 
 int main()
 {
@@ -64,7 +65,7 @@ int main()
 
     key_item = key(array_orig2, array_orig_end2, &array_for_filter2, &array_for_filter_end2);
 
-    if (key_item == -2)
+    if (key_item <= 0)
         printf("Test passed\n\n");
     else
         printf("Test failed\n\n");
