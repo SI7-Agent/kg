@@ -58,6 +58,12 @@ void record (FILE *f, int *array_start, int *array_end)
     }
 }
 
+/**
+ Создает пустой выходной файл в случаях ошибок, предусмотренных в программе.
+
+ * @param argv
+ */
+
 void record_empty(char *argv[])
 {
     FILE *f_out_error = fopen(argv[2], "w");

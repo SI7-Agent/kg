@@ -1,3 +1,13 @@
+/**
+ Вычисляет среднее значение элементов данного массива.
+
+ * @param array_start
+ * @param array_end
+ * @param start_orig
+ * @param size
+ * @return возвращает среднее значение элементов данного массива.
+ */
+
 int get_average(int *array_start, int *array_end, int *start_orig, int size)
 {
     int average = 0;
@@ -13,6 +23,17 @@ int get_average(int *array_start, int *array_end, int *start_orig, int size)
     return average;
 }
 
+/**
+ Вычисляет число элементов, пригодных для фильтрации.
+
+ * @param array_start
+ * @param array_end
+ * @param start_orig
+ * @param size
+ * @param average
+ * @return возвращает число элементов, пригодных для фильтрации.
+ */
+
 int get_filt_elems(int *array_start, int *array_end, int *start_orig, int size, int average)
 {
     int ready_to_filter = 0;
@@ -27,6 +48,18 @@ int get_filt_elems(int *array_start, int *array_end, int *start_orig, int size, 
     }
     return ready_to_filter;
 }
+
+/**
+ Копирует элементы, пригодные для фильтрации, в отдельный массив.
+
+ * @param array_start
+ * @param array_end
+ * @param start_orig
+ * @param size
+ * @param average
+ * @param start_orig2
+ * @param array2_end
+ */
 
 void get_array_for_filter(int *array_start, int *array_end, int *start_orig, int size, int average, int *start_orig2, int *array2_end)
 {

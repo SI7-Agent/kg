@@ -11,6 +11,14 @@
 #include "mysort.h"
 #include "do_filter.h"
 
+/**
+ Выполняет сортировку отфильтрованного массива.
+
+ * @param array_for_filter
+ * @param array_for_filter_end
+ * @param argv
+ */
+
 void sort_with_filt(int *array_for_filter, int *array_for_filter_end, char *argv[])
 {
     unsigned long long tb, te;
@@ -27,6 +35,15 @@ void sort_with_filt(int *array_for_filter, int *array_for_filter_end, char *argv
     record(f_out, array_for_filter, array_for_filter_end);
     fclose(f_out);
 }
+
+/**
+ Выполняет сортировку неотфильтрованного (исходного) массива.
+
+ * @param array_orig
+ * @param array_orig_end
+ * @param array_start
+ * @param argv
+ */
 
 void sort_with_no_filt(int *array_orig, int *array_orig_end,int *array_start, char *argv[])
 {
@@ -47,6 +64,19 @@ void sort_with_no_filt(int *array_orig, int *array_orig_end,int *array_start, ch
     record(f_out, array_orig, array_orig_end);
     fclose(f_out);
 }
+
+/**
+ Выполняет работу программы после окончания проверок файлов и выделения памяти.
+
+ * @param code
+ * @param argv
+ * @param argc
+ * @param array_orig
+ * @param array_orig_end
+ * @param array_start
+ * @param array_for_filter
+ * @param array_for_filter_end
+ */
 
 void work(int *code, char *argv[], int argc, int *array_orig, int *array_orig_end, int *array_start, int *array_for_filter, int *array_for_filter_end)
 {
