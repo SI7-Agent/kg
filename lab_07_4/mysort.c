@@ -3,7 +3,7 @@
 #include <string.h>
 
 /**
- Cортирует по возрастанию массив array_start.
+ CРѕСЂС‚РёСЂСѓРµС‚ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ РјР°СЃСЃРёРІ array_start.
 
  * @param array_start
  * @param array_end
@@ -35,11 +35,11 @@ void mysort (void* array_start, void* array_end, size_t size, int (*compar)(cons
 }
 
 /**
- Сравнивает два элемента.
+ вЂ”СЂР°РІРЅРёРІР°РµС‚ РґРІР° СЌР»РµРјРµРЅС‚Р°.
 
  * @param i
  * @param j
- * @return возвращает либо число, большее 0, либо меньшее 0, либо 0.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ Р»РёР±Рѕ С‡РёСЃР»Рѕ, Р±РѕР»СЊС€РµРµ 0, Р»РёР±Рѕ РјРµРЅСЊС€РµРµ 0, Р»РёР±Рѕ 0.
  */
 
 int comp_int (const void *i, const void *j)
