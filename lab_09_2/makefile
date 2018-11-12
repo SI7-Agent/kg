@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -std=c99 -Wall -Werror -pedantic
-OBJ := my_libstr.o
+OBJ := my_libstr.o test_func.o 
 
 %.o : %.c *.h
 	$(CC) $(CFLAGS) -c $<
@@ -12,4 +12,4 @@ test.exe: test.o $(OBJ)
 	$(CC) $(CFLAGS) -o test.exe test.o $(OBJ)
 	
 clean:
-	del *.o *.exe
+	del *.o *.gch *.exe
