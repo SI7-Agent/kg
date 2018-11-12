@@ -6,7 +6,7 @@
 #include "my_libstr.h"
 
 /**
- Собственная реализация библиотечной функции strlen().
+ РЎРѕР±СЃС‚РІРµРЅРЅР°СЏ СЂРµР°Р»РёР·Р°С†РёСЏ Р±РёР±Р»РёРѕС‚РµС‡РЅРѕР№ С„СѓРЅРєС†РёРё strlen().
 
  * @param s
  * @return
@@ -22,7 +22,7 @@ size_t my_strlen(const char *s)
 }
 
 /**
- Создает копию строки в новом массиве.
+ РЎРѕР·РґР°РµС‚ РєРѕРїРёСЋ СЃС‚СЂРѕРєРё РІ РЅРѕРІРѕРј РјР°СЃСЃРёРІРµ.
 
  * @param str
  * @return
@@ -39,12 +39,12 @@ char *strdup(const char *str)
 }
 
 /**
- Перевыделяет память под считываемую строку.
+ РџРµСЂРµРІС‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РїРѕРґ СЃС‡РёС‚С‹РІР°РµРјСѓСЋ СЃС‚СЂРѕРєСѓ.
 
  * @param string
  * @param cur_len
  * @param new_len
- * @return возвращает код ошибки.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґ РѕС€РёР±РєРё.
  */
 
 int realloc_str(char** string, int cur_len, int new_len)
@@ -70,12 +70,12 @@ int realloc_str(char** string, int cur_len, int new_len)
 }
 
 /**
- Считывает строку из файла.
+ РЎС‡РёС‚С‹РІР°РµС‚ СЃС‚СЂРѕРєСѓ РёР· С„Р°Р№Р»Р°.
 
  * @param lineptr
  * @param n
  * @param stream
- * @return количество считанных байт.
+ * @return РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‡РёС‚Р°РЅРЅС‹С… Р±Р°Р№С‚.
  */
 
 ssize_t getline(char **lineptr, size_t *n, FILE *stream)
@@ -107,12 +107,12 @@ ssize_t getline(char **lineptr, size_t *n, FILE *stream)
 }
 
 /**
- Заменяет первое вхождение указанной подстроки в данной строке.
+ Р—Р°РјРµРЅСЏРµС‚ РїРµСЂРІРѕРµ РІС…РѕР¶РґРµРЅРёРµ СѓРєР°Р·Р°РЅРЅРѕР№ РїРѕРґСЃС‚СЂРѕРєРё РІ РґР°РЅРЅРѕР№ СЃС‚СЂРѕРєРµ.
 
  * @param string
  * @param search
  * @param replace
- * @return возвращает код ошибки.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґ РѕС€РёР±РєРё.
  */
 
 int replace(char **string, const char *search, const char *replace)
@@ -148,12 +148,12 @@ int replace(char **string, const char *search, const char *replace)
 }
 
 /**
- Заменяет все вхождения указанной подстроки в данной строке.
+ Р—Р°РјРµРЅСЏРµС‚ РІСЃРµ РІС…РѕР¶РґРµРЅРёСЏ СѓРєР°Р·Р°РЅРЅРѕР№ РїРѕРґСЃС‚СЂРѕРєРё РІ РґР°РЅРЅРѕР№ СЃС‚СЂРѕРєРµ.
 
  * @param source
  * @param search
  * @param replacement
- * @return возвращает указатель на измененную строку.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РёР·РјРµРЅРµРЅРЅСѓСЋ СЃС‚СЂРѕРєСѓ.
  */
 
 char* str_replace(const char *source, const char *search, const char *replacement)
@@ -169,13 +169,13 @@ char* str_replace(const char *source, const char *search, const char *replacemen
 }
 
 /**
- Заменяет все вхождения указанной подстроки во всех строках входного файла и записывает результат в выходной файл.
+ Р—Р°РјРµРЅСЏРµС‚ РІСЃРµ РІС…РѕР¶РґРµРЅРёСЏ СѓРєР°Р·Р°РЅРЅРѕР№ РїРѕРґСЃС‚СЂРѕРєРё РІРѕ РІСЃРµС… СЃС‚СЂРѕРєР°С… РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° Рё Р·Р°РїРёСЃС‹РІР°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р».
 
  * @param file_in
  * @param file_out
  * @param search
  * @param replace
- * @return возвращает код ошибки.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґ РѕС€РёР±РєРё.
  */
 
 int replace_strings_in_file(FILE *file_in, FILE *file_out, const char *search, const char *replace)
@@ -203,7 +203,7 @@ int replace_strings_in_file(FILE *file_in, FILE *file_out, const char *search, c
 }
 
 /**
- Выводит тип ошибки, если таковая имеется, в случае, предусмотренном программой.
+ Р’С‹РІРѕРґРёС‚ С‚РёРї РѕС€РёР±РєРё, РµСЃР»Рё С‚Р°РєРѕРІР°СЏ РёРјРµРµС‚СЃСЏ, РІ СЃР»СѓС‡Р°Рµ, РїСЂРµРґСѓСЃРјРѕС‚СЂРµРЅРЅРѕРј РїСЂРѕРіСЂР°РјРјРѕР№.
 
  * @param code_error
  */
