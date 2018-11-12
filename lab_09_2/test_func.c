@@ -6,6 +6,13 @@
 #include "test_func.h"
 #include "my_libstr.h"
 
+/**
+ Выдает окончательный вердикт относительно успешности теста.
+
+ * @param val
+ * @return возвращает результат тестирования.
+ */
+
 char *answer(int val)
 {
     char *answer = "FAIL";
@@ -16,6 +23,13 @@ char *answer(int val)
 
     return answer;
 }
+
+/**
+ Тестирует функцию считывания строки из файла.
+
+ * @param file_name
+ * @return возвращает статус тестирования.
+ */
 
 int test_getline(const char *file_name)
 {
@@ -49,6 +63,16 @@ int test_getline(const char *file_name)
     fclose(file_in1);
     return result;
 }
+
+/**
+ Тестирует функцию замены подстроки в данной строке.
+
+ * @param line
+ * @param replace_what
+ * @param replace_with
+ * @param answer
+ * @return возвращает статус тестирования.
+ */
 
 int test_replace(const char *line, const char *replace_what, const char *replace_with, char *answer)
 {
