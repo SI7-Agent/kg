@@ -19,7 +19,6 @@ int my_strcspn(char *string, char *key)
         {
             if (string[i] == key[j])
             {
-
                 if (bytes == -1)
                 {
                     if ((!string[i]) && (!key[j]))
