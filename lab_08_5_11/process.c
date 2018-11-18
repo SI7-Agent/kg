@@ -155,6 +155,12 @@ void make_info()
     }
 }
 
+/**
+ Выполненяет программу.
+
+ * @param argv
+ */
+
 void process(char *argv[])
 {
     FILE *matr1 = fopen(argv[2], "r");
