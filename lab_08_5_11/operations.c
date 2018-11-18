@@ -6,13 +6,13 @@
 #include "get_matrix.h"
 
 /**
- Выполняет суммироование двух матриц.
+ Р’С‹РїРѕР»РЅСЏРµС‚ СЃСѓРјРјРёСЂРѕРѕРІР°РЅРёРµ РґРІСѓС… РјР°С‚СЂРёС†.
 
  * @param matr1
  * @param matr2
  * @param rows
  * @param cols
- * @return возвращает указатель на результирующую матрицу.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ.
  */
 
 float **get_sum(float **matr1, float **matr2, int rows, int cols)
@@ -32,14 +32,14 @@ float **get_sum(float **matr1, float **matr2, int rows, int cols)
 }
 
 /**
- Выполняет умножение двух матриц.
+ Р’С‹РїРѕР»РЅСЏРµС‚ СѓРјРЅРѕР¶РµРЅРёРµ РґРІСѓС… РјР°С‚СЂРёС†.
 
  * @param matr1
  * @param matr2
  * @param rows
  * @param cols
  * @param num1
- * @return возвращает указатель на результирующую матрицу, в случае, если память не выделилась, возвращает NULL.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ, РІ СЃР»СѓС‡Р°Рµ, РµСЃР»Рё РїР°РјСЏС‚СЊ РЅРµ РІС‹РґРµР»РёР»Р°СЃСЊ, РІРѕР·РІСЂР°С‰Р°РµС‚ NULL.
  */
 
 float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
@@ -64,7 +64,7 @@ float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
 }
 
 /**
- Преобразует исходную матрицу в матрицу без i-ой строки и j-ого столбца.
+ РџСЂРµРѕР±СЂР°Р·СѓРµС‚ РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ РІ РјР°С‚СЂРёС†Сѓ Р±РµР· i-РѕР№ СЃС‚СЂРѕРєРё Рё j-РѕРіРѕ СЃС‚РѕР»Р±С†Р°.
 
  * @param matr
  * @param p
@@ -75,29 +75,29 @@ float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
 
 void get_minor(float **matr, float **p, int i, int j, int m)
 {
-    int ki, kj, flag_i, flag_j;
+    int current_i, current_j, flag_i, flag_j;
     flag_i = 0;
-    for (ki = 0; ki < m - 1 ; ki++)
+    for (current_i = 0; current_i < m - 1 ; current_i++)
     {
-        if (ki == i)
+        if (current_i == i)
             flag_i = 1;
         flag_j = 0;
-        for (kj = 0; kj < m - 1; kj++)
+        for (current_j = 0; current_j < m - 1; current_j++)
         {
-            if (kj == j)
+            if (current_j == j)
                 flag_j = 1;
-            p[ki][kj] = matr[ki + flag_i][kj + flag_j];
+            p[current_i][current_j] = matr[current_i + flag_i][current_j + flag_j];
         }
     }
 }
 
 /**
- Вычисляет определитель матрицы.
+ Р’С‹С‡РёСЃР»СЏРµС‚ РѕРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹.
 
  * @param matr
  * @param m
  * @param size
- * @return возвращает значение определтеля.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РѕРїСЂРµРґРµР»С‚РµР»СЏ.
  */
 
 float determinant(float **matr, int m, int size, int *err)
