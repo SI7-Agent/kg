@@ -17,23 +17,16 @@ float **allocate_matrix(int rows, int cols)
 
     ptrs = malloc(rows * sizeof(float*));
 	
-    if (!ptrs)
+    if (ptrs)
     {
-        printf("Allocation error\n");
-        return NULL;
-    }
-	
-    data = malloc(rows * cols * sizeof(float));
-	
-    if (!data)
-    {
-        printf("Allocation error\n");
-        free(ptrs);
-        return NULL;
-    }
+        data = malloc(rows * cols * sizeof(float));
 
-    for (int i = 0; i < rows; i++)
-        ptrs[i] = data + i * cols;
+        if (!data)
+            free(ptrs);
+        else
+            for (int i = 0; i < rows; i++)
+                ptrs[i] = data + i * cols;
+    }
 
     return ptrs;
 }
@@ -57,9 +50,7 @@ float **fill_matrix(FILE *f, int *rows, int *cols)
 
     float **matrix = allocate_matrix(row, col);
 
-    if (!matrix)
-        ;
-    else
+    if (matrix)
     {
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++)
