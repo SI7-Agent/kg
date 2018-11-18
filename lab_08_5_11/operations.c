@@ -6,19 +6,19 @@
 #include "get_matrix.h"
 
 /**
- Р’С‹РїРѕР»РЅСЏРµС‚ СЃСѓРјРјРёСЂРѕРѕРІР°РЅРёРµ РґРІСѓС… РјР°С‚СЂРёС†.
+ Выполняет суммироование двух матриц.
 
  * @param matr1
  * @param matr2
  * @param rows
  * @param cols
- * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ.
+ * @return возвращает указатель на результирующую матрицу.
  */
 
 float **get_sum(float **matr1, float **matr2, int rows, int cols)
 {
     float **result = allocate_matrix(rows, cols);
-	
+
     if (!result)
         result = NULL;
     else
@@ -32,20 +32,20 @@ float **get_sum(float **matr1, float **matr2, int rows, int cols)
 }
 
 /**
- Р’С‹РїРѕР»РЅСЏРµС‚ СѓРјРЅРѕР¶РµРЅРёРµ РґРІСѓС… РјР°С‚СЂРёС†.
+ Выполняет умножение двух матриц.
 
  * @param matr1
  * @param matr2
  * @param rows
  * @param cols
  * @param num1
- * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ, РІ СЃР»СѓС‡Р°Рµ, РµСЃР»Рё РїР°РјСЏС‚СЊ РЅРµ РІС‹РґРµР»РёР»Р°СЃСЊ, РІРѕР·РІСЂР°С‰Р°РµС‚ NULL.
+ * @return возвращает указатель на результирующую матрицу, в случае, если память не выделилась, возвращает NULL.
  */
 
 float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
 {
     float **result = allocate_matrix(rows, cols);
-	
+
     if (!result)
         result = NULL;
     else
@@ -64,7 +64,7 @@ float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
 }
 
 /**
- РџСЂРµРѕР±СЂР°Р·СѓРµС‚ РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ РІ РјР°С‚СЂРёС†Сѓ Р±РµР· i-РѕР№ СЃС‚СЂРѕРєРё Рё j-РѕРіРѕ СЃС‚РѕР»Р±С†Р°.
+ Преобразует исходную матрицу в матрицу без i-ой строки и j-ого столбца.
 
  * @param matr
  * @param p
@@ -73,31 +73,31 @@ float **get_multy(float **matr1, float **matr2, int rows, int cols, int num1)
  * @param m
  */
 
-void get_matr(float **matr, float **p, int i, int j, int m)
+void get_minor(float **matr, float **p, int i, int j, int m)
 {
-    int ki, kj, di, dj;
-    di = 0;
-    for (ki = 0; ki< m-1 ; ki++)
+    int ki, kj, flag_i, flag_j;
+    flag_i = 0;
+    for (ki = 0; ki < m - 1 ; ki++)
     {
         if (ki == i)
-            di = 1;
-        dj = 0;
-        for (kj = 0; kj< m-1; kj++)
+            flag_i = 1;
+        flag_j = 0;
+        for (kj = 0; kj < m - 1; kj++)
         {
             if (kj == j)
-                dj = 1;
-            p[ki][kj] = matr[ki + di][kj + dj];
+                flag_j = 1;
+            p[ki][kj] = matr[ki + flag_i][kj + flag_j];
         }
     }
 }
 
 /**
- Р’С‹С‡РёСЃР»СЏРµС‚ РѕРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹.
+ Вычисляет определитель матрицы.
 
  * @param matr
  * @param m
  * @param size
- * @return РІРѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РѕРїСЂРµРґРµР»С‚РµР»СЏ.
+ * @return возвращает значение определтеля.
  */
 
 float determinant(float **matr, int m, int size, int *err)
@@ -112,27 +112,21 @@ float determinant(float **matr, int m, int size, int *err)
         free_matrix(p);
         p = allocate_matrix(m, m);
     }
-    
+
     d = 0;
     k = 1;
     n = m - 1;
     if (m == 1)
-    {
         d = matr[0][0];
-        return d;
-    }
     if (m == 2)
-    {
         d = matr[0][0] * matr[1][1] - (matr[1][0] * matr[0][1]);
-        return d;
-    }
     if (m > 2)
     {
         if (p)
         {
             for (i = 0; i<m; i++)
             {
-                get_matr(matr, p, i, 0, m);
+                get_minor(matr, p, i, 0, m);
                 d = d + k * matr[i][0] * determinant(p, n, m, err);
                 k = -k;
             }
@@ -140,6 +134,7 @@ float determinant(float **matr, int m, int size, int *err)
         else
             *err = 1;
     }
-    free_matrix(p);
+    if (p)
+        free_matrix(p);
     return d;
 }
