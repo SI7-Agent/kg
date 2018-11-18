@@ -1,4 +1,5 @@
 #ifndef TEST_FUNC_H
+#define TEST_FUNC_H
 #define OK 0
 #define FAIL -1
 

@@ -1,4 +1,5 @@
 #ifndef MY_LIBSTR_H
+#define MY_LIBSTR_H
 #define NO_ERROR 0
 #define MALLOC_ERROR -1
 #define ARGV_ERROR -2
