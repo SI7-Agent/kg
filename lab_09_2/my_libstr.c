@@ -208,7 +208,7 @@ int replace_strings_in_file(FILE *file_in, FILE *file_out, const char *search, c
  * @param code_error
  */
 
-void get_error(int code_error)
+void print_error(int code_error)
 {
     switch(code_error)
     {
