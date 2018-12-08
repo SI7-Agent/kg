@@ -1,5 +1,15 @@
 #include "func.h"
 
+/**
+ Записывает символ cur_sym в массив символов (строку) format_buffer.
+
+ * @param format_buffer
+ * @param size
+ * @param cur_sym
+ * @param global_counter
+ * @return возвращает указатель на строку format_buffer с записанным символом cur_sym.
+ */
+
 char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_counter)
 {
     *global_counter = *global_counter + 1;
@@ -11,6 +21,17 @@ char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_c
     }
     return format_buffer;
 }
+
+/**
+ Выполняет полную запись аргумента toconvert в виде hex-числа в строку format_buffer.
+
+ * @param format_buffer
+ * @param size
+ * @param toconvert
+ * @param global_counter
+ * @param sym
+ * @return возвращает указатель на строку format_buffer с записанным hex-числом toconvert.
+ */
 
 char *print_hex_id(char *format_buffer, size_t *size, const unsigned short toconvert, int *global_counter, char sym)
 {
@@ -49,6 +70,13 @@ char *print_hex_id(char *format_buffer, size_t *size, const unsigned short tocon
     return format_buffer;
 }
 
+/**
+ Высчитывает длину записываемого целого числа.
+
+ * @param num
+ * @return возвращает длину записываемого целого числа.
+ */
+
 int digit_len(int num)
 {
     int num_len = 0;
@@ -64,11 +92,30 @@ int digit_len(int num)
     return num_len;
 }
 
+/**
+ Конвертирует цифру записываемого целового числа в символ.
+
+ * @param num
+ * @param k
+ * @return возвращает цифру числа как символ.
+ */
+
 char get_n_char(int num, int k)
 {
     int n = (num / (pow(10, k - 1)));
     return n % 10 + '0';
 }
+
+/**
+ Выполняет полную запись аргумента toprint в виде целого числа в строку format_buffer.
+
+ * @param format_buffer
+ * @param size
+ * @param toconvert
+ * @param global_counter
+ * @param sym
+ * @return возвращает указатель на строку format_buffer с записанным целым числом toprint.
+ */
 
 char *print_int(char *format_buffer, size_t *size, const int toprint, int *global_counter)
 {
@@ -84,6 +131,17 @@ char *print_int(char *format_buffer, size_t *size, const int toprint, int *globa
     return format_buffer;
 }
 
+/**
+ Выполняет запись аргумента toprint в виде символа в строку format_buffer.
+
+ * @param format_buffer
+ * @param size
+ * @param toconvert
+ * @param global_counter
+ * @param sym
+ * @return возвращает указатель на строку format_buffer с записанным символом toprint.
+ */
+
 char *print_char_sym(char *format_buffer, size_t *size, const int toprint, int *global_counter)
 {
     const char sym = (const char)toprint;
@@ -91,6 +149,16 @@ char *print_char_sym(char *format_buffer, size_t *size, const int toprint, int *
     format_buffer = print(format_buffer, size, sym, global_counter);
     return format_buffer;
 }
+
+/**
+ Записывает в строку buffer аргументы из списка ap в соответствии со спецификаторами и модификатором.
+
+ * @param buffer
+ * @param buff_size
+ * @param format
+ * @param ap
+ * @return возвращает длину полученной строки, не учитывая заключительный нуль.
+ */
 
 size_t my_vsnprintf(char *buffer, size_t buff_size, const char *format, va_list ap)
 {
@@ -138,6 +206,15 @@ size_t my_vsnprintf(char *buffer, size_t buff_size, const char *format, va_list 
     *format_buffer = '\0';
     return global_counter;
 }
+
+/**
+ Реализуемая функция snprintf.
+
+ * @param buffer
+ * @param size
+ * @param format
+ * @return возвращает длину полученной строки, не учитывая заключительный нуль.
+ */
 
 int my_snprintf(char *buffer, size_t size, const char *format, ...)
 {
