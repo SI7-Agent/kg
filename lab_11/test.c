@@ -27,14 +27,21 @@ int test1()
 {
     char *buf1 = (char*)malloc(MAX_BUF_LEN);
     char *buf2 = (char*)malloc(MAX_BUF_LEN);
-    char sym = 'B';
+    int flag;
 
-    int read_byte1 = my_snprintf(buf1, MAX_BUF_LEN, "%c olo %i %hx", sym, -70, -170);
-    int read_byte2 = snprintf(buf2, MAX_BUF_LEN, "%c olo %i %hx", sym, -70, -170);
-    int flag = compare(buf1, buf2, read_byte1, read_byte2);
+    if (buf1 && buf2)
+    {
+        char sym = 'B';
 
-    free(buf1);
-    free(buf2);
+        int read_byte1 = my_snprintf(buf1, MAX_BUF_LEN, "%c olo %i %hx", sym, -70, -170);
+        int read_byte2 = snprintf(buf2, MAX_BUF_LEN, "%c olo %i %hx", sym, -70, -170);
+        flag = compare(buf1, buf2, read_byte1, read_byte2);
+
+        free(buf1);
+        free(buf2);
+    }
+    else
+        flag = FAIL;
 
     return flag;
 }
@@ -49,13 +56,19 @@ int test2()
 {
     char *buf1 = (char*)malloc(MAX_BUF_LEN);
     char *buf2 = (char*)malloc(MAX_BUF_LEN);
+    int flag;
 
-    int read_byte1 = my_snprintf(buf1, MAX_BUF_LEN, "My %c%c%c%c is %c. I am %i (%hx) years old.", 'n', 'a', 'm', 'e', 'K', 197, 197);
-    int read_byte2 = snprintf(buf2, MAX_BUF_LEN, "My %c%c%c%c is %c. I am %i (%hx) years old.", 'n', 'a', 'm', 'e', 'K', 197, 197);
-    int flag = compare(buf1, buf2, read_byte1, read_byte2);
+    if (buf1 && buf2)
+    {
+        int read_byte1 = my_snprintf(buf1, MAX_BUF_LEN, "My %c%c%c%c is %c. I am %i (%hx) years old.", 'n', 'a', 'm', 'e', 'K', 197, 197);
+        int read_byte2 = snprintf(buf2, MAX_BUF_LEN, "My %c%c%c%c is %c. I am %i (%hx) years old.", 'n', 'a', 'm', 'e', 'K', 197, 197);
+        flag = compare(buf1, buf2, read_byte1, read_byte2);
 
-    free(buf1);
-    free(buf2);
+        free(buf1);
+        free(buf2);
+    }
+    else
+        flag = FAIL;
 
     return flag;
 }
