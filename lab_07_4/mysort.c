@@ -12,7 +12,7 @@
 
 void swap(char **newElement, char **location, void **member)
 {
-	size_t size = sizeof(int);
+    size_t size = sizeof(int);
     
     memcpy(*member, *newElement, size);
     memcpy(*newElement, *location, size);
@@ -36,18 +36,18 @@ void mysort (void* array_start, void* array_end, size_t size, int (*compar)(cons
     char *start = (char*)array_start;
     char *end = (char*)array_end;
     start += size;
-	if (member)
+    if (member)
     {
-		for (; start < end; start += size)
+        for (; start < end; start += size)
         {
             newElement = start;
             memcpy(member, newElement, size);
             location = start - size;
-			while(((void*)location >= base) && (compar(location, newElement) > 0))
+            while(((void*)location >= base) && (compar(location, newElement) > 0))
                 swap(&newElement, &location, &member);
 	    }
         free(member);
-	}
+    }
 }
 
 /**
