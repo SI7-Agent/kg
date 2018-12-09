@@ -45,7 +45,7 @@ void mysort (void* array_start, void* array_end, size_t size, int (*compar)(cons
             location = start - size;
             while(((void*)location >= base) && (compar(location, newElement) > 0))
                 swap(&newElement, &location, &member);
-	    }
+        }
         free(member);
     }
 }
