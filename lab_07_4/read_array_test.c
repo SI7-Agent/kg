@@ -69,8 +69,8 @@ void record_empty(char *argv[])
     FILE *f_out_error = fopen(argv[2], "w");
     if (f_out_error)
     {
-		fprintf(f_out_error, "%s", "");
-		fclose(f_out_error);
+        fprintf(f_out_error, "%s", "");
+        fclose(f_out_error);
     }
 }
 
