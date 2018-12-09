@@ -2,7 +2,7 @@
 
 void print_error(index code, char *argv[])
 {
-	switch (code)
+    switch (code)
     {
         case 0:
             break;
