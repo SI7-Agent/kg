@@ -9,22 +9,23 @@
 #include "get_size_test.h"
 #include "mysort.h"
 #include "do_filter.h"
+#include "errors.h"
 
 int main(int argc, char *argv[])
 {
-    int code = 0;
+    index code = 0;
     if (argc < 3)
-        code = -1;
+        code = wrong_argv;
     else
     {
         FILE *f = fopen(argv[1], "r");
-        if (f == NULL)
-            code = -2;
+        if (!f)
+            code = no_file;
         else
         {
             int size = get_size(f);
             if (size == 0)
-                code = -3;
+                code = empty_file;
             else
             {
                 long pos, pos_end;
@@ -33,19 +34,19 @@ int main(int argc, char *argv[])
                 pos = get_pos(f);
 
                 if (pos != pos_end)
-                    code = -5;
+                    code = bad_data_file;
                 else
                 {
-                    int *array_orig = (int *)malloc(size*sizeof(int));
-                    int *array_orig_end = array_orig+size;
+                    int *array_orig = (int *)malloc(size * sizeof(int));
+                    int *array_orig_end = array_orig + size;
                     int *array_start = array_orig;
 
                     fseek(f, 0, SEEK_SET);
 
-                    int *array_for_filter = (int *)malloc(size*sizeof(int));
-                    int *array_for_filter_end = array_for_filter+size;
-                    if ((array_orig == NULL)||(array_for_filter == NULL))
-                        code = -6;
+                    int *array_for_filter = (int *)malloc(size * sizeof(int));
+                    int *array_for_filter_end = array_for_filter + size;
+                    if ((!array_orig) || (!array_for_filter))
+                        code = mem_error;
                     else
                     {
                         printf("Read array:\n");
@@ -61,39 +62,5 @@ int main(int argc, char *argv[])
             fclose(f);
         }
     }
-    switch (code)
-    {
-    case 0:
-        break;
-
-    case -1:
-        printf("Arguments failed\n");
-        break;
-
-    case -2:
-        printf("In_file failed\n");
-        record_empty(argv);
-        break;
-
-    case -3:
-        printf("File is empty/contains incorrect data.\n");
-        record_empty(argv);
-        break;
-
-    case -4:
-        printf("\nError in filter func\n");
-        break;
-
-    case -5:
-        printf("\nFile contains incorrect data\n");
-        record_empty(argv);
-        break;
-
-    case -6:
-        printf("\nAllocation error\n");
-        break;
-
-    default:
-        printf("\n");
-    }
+    print_error(code, argv);
 }

@@ -10,6 +10,7 @@
 #include "get_size_test.h"
 #include "mysort.h"
 #include "do_filter.h"
+#include "errors.h"
 
 /**
  Выполняет сортировку отфильтрованного массива.
@@ -81,18 +82,19 @@ void sort_with_no_filt(int *array_orig, int *array_orig_end,int *array_start, ch
 void work(int *code, char *argv[], int argc, int *array_orig, int *array_orig_end, int *array_start, int *array_for_filter, int *array_for_filter_end)
 {
     int flag = 0;
+	int size2;
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
         flag = 1;
         array_orig = array_start;
-        int size2 = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
+        size2 = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
 
         if (size2 < 0)
-            *code = -4;
+            *code = bad_filter;
     }
 
-    if ((flag == 1)&&(*code != -4))
+    if ((flag == 1) && (size2 > 0))
         sort_with_filt(array_for_filter, array_for_filter_end, argv);
-    else if ((argc > 2)&&(flag == 0))
+    else if ((argc > 2) && (flag == 0))
         sort_with_no_filt(array_orig, array_orig_end, array_start, argv);
 }
