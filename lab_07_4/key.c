@@ -34,13 +34,13 @@ int key(int *array_start, int *array_end, int **array2_start, int **array2_end)
         else
         {
             *array2_start = (int *)realloc(*array2_start, ready_to_filter * sizeof(int));
-			if (array2_start)
-			{
+            if (array2_start)
+            {
                 *array2_end = *array2_start + ready_to_filter;
 
                 int *start_orig2 = *array2_start;
                 get_array_for_filter(array_start, array_end, start_orig, size, average, start_orig2, *array2_end);
-			}
+            }
         }
     }
     
