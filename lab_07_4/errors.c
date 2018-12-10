@@ -1,5 +1,12 @@
 #include "errors.h"
 
+/**
+ Выводит тип ошибки, если таковая имеется.
+  
+  @param code
+  @param argv
+ */
+
 void print_error(index code, char *argv[])
 {
     switch (code)
