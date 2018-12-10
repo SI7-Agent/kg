@@ -37,20 +37,18 @@ int main(int argc, char *argv[])
                     code = bad_data_file;
                 else
                 {
-                    int *array_orig = (int *)malloc(size * sizeof(int));
-                    int *array_orig_end = array_orig + size;
-                    int *array_start = array_orig;
-
-                    fseek(f, 0, SEEK_SET);
-
-                    int *array_for_filter = (int *)malloc(size * sizeof(int));
-                    int *array_for_filter_end = array_for_filter + size;
-                    if ((!array_orig) || (!array_for_filter))
+                    int *array_orig = read_array(f, size);
+                    if (!array_orig)
                         code = mem_error;
                     else
                     {
+                        int *array_orig_end = array_orig + size;
+                        int *array_start = array_orig;
+
+                        int *array_for_filter = NULL;
+                        int *array_for_filter_end = NULL;
+						
                         printf("Read array:\n");
-                        read_array(f, array_orig, array_orig_end);
                         output(array_orig, array_orig_end);
                         work(&code, argv, argc, array_orig, array_orig_end, array_start, array_for_filter, array_for_filter_end);
 

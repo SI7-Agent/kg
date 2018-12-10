@@ -8,17 +8,25 @@
  * @param array_orig
  */
 
-void read_array(FILE *f, int *array_orig, int *array_orig_end)
+int *read_array(FILE *f, int size)
 {
     int num;
     fseek(f, 0, SEEK_SET);
 
-    while(fscanf(f, "%d", &num) == 1)
-    {
-        *array_orig = num;
-        if (array_orig != array_orig_end)
-            array_orig++;
+    int *array_orig = (int*)malloc(size * sizeof(int));
+	int *array_orig_flag = array_orig;
+    if (array_orig)
+    {		
+        int *array_orig_end = array_orig + size;
+        while(fscanf(f, "%d", &num) == 1)
+        {
+            *array_orig = num;
+            if (array_orig != array_orig_end)
+                array_orig++;
+        }
+		array_orig = array_orig_flag;
     }
+	return array_orig;
 }
 
 /**
