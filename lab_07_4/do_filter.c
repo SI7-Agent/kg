@@ -80,7 +80,7 @@ void work(int *code, char *argv[], int argc, int *array_orig, int *array_orig_en
         size2 = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
 
         if (!array_for_filter)
-			*code = mem_error;
+            *code = mem_error;
         else if (size2 < 0)
             *code = bad_filter;
     }
