@@ -13,6 +13,6 @@ int replace(char **string, const char *search, const char *replace);
 char* str_replace(const char *source, const char *search, const char *replacement);
 char *strdup(const char *str);
 int replace_strings_in_file(FILE *file_in, FILE *file_out, const char *search, const char *replace);
-void get_error(int code_error);
+void print_error(int code_error);
 size_t my_strnlen(const char *s);
 #endif

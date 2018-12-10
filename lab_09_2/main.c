@@ -30,6 +30,6 @@ int main(int argc, char *argv[])
         fclose(file_in);
     }
 
-    get_error(code_error);
+    print_error(code_error);
     return 0;
 }
