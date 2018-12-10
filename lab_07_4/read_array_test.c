@@ -14,7 +14,7 @@ int *read_array(FILE *f, int size)
     fseek(f, 0, SEEK_SET);
 
     int *array_orig = (int*)malloc(size * sizeof(int));
-	int *array_orig_flag = array_orig;
+    int *array_orig_flag = array_orig;
     if (array_orig)
     {		
         int *array_orig_end = array_orig + size;
@@ -24,9 +24,9 @@ int *read_array(FILE *f, int size)
             if (array_orig != array_orig_end)
                 array_orig++;
         }
-		array_orig = array_orig_flag;
+        array_orig = array_orig_flag;
     }
-	return array_orig;
+    return array_orig;
 }
 
 /**
@@ -81,5 +81,3 @@ void record_empty(char *argv[])
         fclose(f_out_error);
     }
 }
-
-
