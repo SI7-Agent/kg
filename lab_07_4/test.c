@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "read_array_test.h"
 #include "tick.h"
@@ -16,13 +17,11 @@ int main()
 
     int size = get_size(f1);
 
-    int *array_orig1 = (int*)malloc(size*sizeof(int));
+    int *array_orig1 = read_array(f1, size);
     int *array_orig_end1 = array_orig1 + size;
 
-    read_array(f1, array_orig1, array_orig_end1);
-
-    int *array_for_filter1 = (int*)malloc(size*sizeof(int));
-    int *array_for_filter_end1 = array_for_filter1 + size;
+    int *array_for_filter1 = NULL;
+    int *array_for_filter_end1 = NULL;
 
     int key_item = key(array_orig1, array_orig_end1, &array_for_filter1, &array_for_filter_end1);
 
@@ -55,13 +54,11 @@ int main()
 
     size = get_size(f3);
 
-    int *array_orig2 = (int*)malloc(size*sizeof(int));
+    int *array_orig2 = read_array(f3, size); 
     int *array_orig_end2 = array_orig2 + size;
 
-    read_array(f3, array_orig2, array_orig_end2);
-
-    int *array_for_filter2 = (int*)malloc(size*sizeof(int));
-    int *array_for_filter_end2 = array_for_filter2 + size;
+    int *array_for_filter2 = NULL;
+    int *array_for_filter_end2 = NULL;
 
     key_item = key(array_orig2, array_orig_end2, &array_for_filter2, &array_for_filter_end2);
 
@@ -86,10 +83,37 @@ int main()
     pos_end = ftell(f4);
 
     if (pos != pos_end)
-        printf("Test passed\n");
+        printf("Test passed\n\n");
     else
-        printf("\nTest failed\n");
+        printf("\nTest failed\n\n");
     fclose(f4);
 	
-	return 0;
+	//-----------------------------
+	
+    printf("Testing sort time \n");
+    FILE *f5 = fopen("in_1.txt", "r");
+    int *array_orig5 = read_array(f5, size);;
+    int *array_orig_end5 = array_orig_end1;
+	
+    unsigned long long tb, te;
+    tb = tick();
+    mysort(array_orig5, array_orig_end5, sizeof(int), comp_int);
+    te = tick();
+    printf("Mysort time is: %d\n", (te - tb));
+	
+    unsigned int middle_t = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        tb = tick();
+        qsort(array_orig5, array_orig_end5 - array_orig5, sizeof(int), comp_int);
+        te = tick();
+        middle_t += te - tb;
+    }
+    middle_t /= 10;
+	
+    printf("Qsort average time is: %d nsec\n", middle_t);
+    fclose(f5);
+    printf("Test passed\n\n");
+    return 0;
 }
