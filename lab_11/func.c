@@ -1,13 +1,13 @@
 #include "func.h"
 
 /**
- Записывает символ cur_sym в массив символов (строку) format_buffer.
+ Р—Р°РїРёСЃС‹РІР°РµС‚ СЃРёРјРІРѕР» cur_sym РІ РјР°СЃСЃРёРІ СЃРёРјРІРѕР»РѕРІ (СЃС‚СЂРѕРєСѓ) format_buffer.
 
  * @param format_buffer
  * @param size
  * @param cur_sym
  * @param global_counter
- * @return возвращает указатель на строку format_buffer с записанным символом cur_sym.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ format_buffer СЃ Р·Р°РїРёСЃР°РЅРЅС‹Рј СЃРёРјРІРѕР»РѕРј cur_sym.
  */
 
 char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_counter)
@@ -23,14 +23,14 @@ char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_c
 }
 
 /**
- Выполняет полную запись аргумента toconvert в виде hex-числа, размера unsigned short int, в строку format_buffer.
+ Р’С‹РїРѕР»РЅСЏРµС‚ РїРѕР»РЅСѓСЋ Р·Р°РїРёСЃСЊ Р°СЂРіСѓРјРµРЅС‚Р° toconvert РІ РІРёРґРµ hex-С‡РёСЃР»Р°, СЂР°Р·РјРµСЂР° unsigned short int, РІ СЃС‚СЂРѕРєСѓ format_buffer.
 
  * @param format_buffer
  * @param size
  * @param toconvert
  * @param global_counter
  * @param sym
- * @return возвращает указатель на строку format_buffer с записанным hex-числом toconvert.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ format_buffer СЃ Р·Р°РїРёСЃР°РЅРЅС‹Рј hex-С‡РёСЃР»РѕРј toconvert.
  */
 
 char *print_short_hex(char *format_buffer, size_t *size, const unsigned short toconvert, int *global_counter, char sym)
@@ -70,14 +70,14 @@ char *print_short_hex(char *format_buffer, size_t *size, const unsigned short to
 }
 
 /**
- Выполняет полную запись аргумента toconvert в виде hex-числа, размера unsigned int, в строку format_buffer.
+ Р’С‹РїРѕР»РЅСЏРµС‚ РїРѕР»РЅСѓСЋ Р·Р°РїРёСЃСЊ Р°СЂРіСѓРјРµРЅС‚Р° toconvert РІ РІРёРґРµ hex-С‡РёСЃР»Р°, СЂР°Р·РјРµСЂР° unsigned int, РІ СЃС‚СЂРѕРєСѓ format_buffer.
 
  * @param format_buffer
  * @param size
  * @param toconvert
  * @param global_counter
  * @param sym
- * @return возвращает указатель на строку format_buffer с записанным hex-числом toconvert.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ format_buffer СЃ Р·Р°РїРёСЃР°РЅРЅС‹Рј hex-С‡РёСЃР»РѕРј toconvert.
  */
 
 char *print_full_hex(char *format_buffer, size_t *size, const unsigned int toconvert, int *global_counter, char sym)
@@ -119,10 +119,10 @@ char *print_full_hex(char *format_buffer, size_t *size, const unsigned int tocon
 }
 
 /**
- Высчитывает длину записываемого целого числа.
+ Р’С‹СЃС‡РёС‚С‹РІР°РµС‚ РґР»РёРЅСѓ Р·Р°РїРёСЃС‹РІР°РµРјРѕРіРѕ С†РµР»РѕРіРѕ С‡РёСЃР»Р°.
 
  * @param num
- * @return возвращает длину записываемого целого числа.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ РґР»РёРЅСѓ Р·Р°РїРёСЃС‹РІР°РµРјРѕРіРѕ С†РµР»РѕРіРѕ С‡РёСЃР»Р°.
  */
 
 int digit_len(int num)
@@ -141,11 +141,11 @@ int digit_len(int num)
 }
 
 /**
- Конвертирует цифру записываемого целового числа в символ.
+ РљРѕРЅРІРµСЂС‚РёСЂСѓРµС‚ С†РёС„СЂСѓ Р·Р°РїРёСЃС‹РІР°РµРјРѕРіРѕ С†РµР»РѕРІРѕРіРѕ С‡РёСЃР»Р° РІ СЃРёРјРІРѕР».
 
  * @param num
  * @param k
- * @return возвращает цифру числа как символ.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ С†РёС„СЂСѓ С‡РёСЃР»Р° РєР°Рє СЃРёРјРІРѕР».
  */
 
 char get_n_char(int num, int k)
@@ -155,14 +155,14 @@ char get_n_char(int num, int k)
 }
 
 /**
- Выполняет полную запись аргумента toprint в виде целого числа в строку format_buffer.
+ Р’С‹РїРѕР»РЅСЏРµС‚ РїРѕР»РЅСѓСЋ Р·Р°РїРёСЃСЊ Р°СЂРіСѓРјРµРЅС‚Р° toprint РІ РІРёРґРµ С†РµР»РѕРіРѕ С‡РёСЃР»Р° РІ СЃС‚СЂРѕРєСѓ format_buffer.
 
  * @param format_buffer
  * @param size
  * @param toconvert
  * @param global_counter
  * @param sym
- * @return возвращает указатель на строку format_buffer с записанным целым числом toprint.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ format_buffer СЃ Р·Р°РїРёСЃР°РЅРЅС‹Рј С†РµР»С‹Рј С‡РёСЃР»РѕРј toprint.
  */
 
 char *print_int(char *format_buffer, size_t *size, const int toprint, int *global_counter)
@@ -180,14 +180,14 @@ char *print_int(char *format_buffer, size_t *size, const int toprint, int *globa
 }
 
 /**
- Выполняет запись аргумента toprint в виде символа в строку format_buffer.
+ Р’С‹РїРѕР»РЅСЏРµС‚ Р·Р°РїРёСЃСЊ Р°СЂРіСѓРјРµРЅС‚Р° toprint РІ РІРёРґРµ СЃРёРјРІРѕР»Р° РІ СЃС‚СЂРѕРєСѓ format_buffer.
 
  * @param format_buffer
  * @param size
  * @param toconvert
  * @param global_counter
  * @param sym
- * @return возвращает указатель на строку format_buffer с записанным символом toprint.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ format_buffer СЃ Р·Р°РїРёСЃР°РЅРЅС‹Рј СЃРёРјРІРѕР»РѕРј toprint.
  */
 
 char *print_char_sym(char *format_buffer, size_t *size, const int toprint, int *global_counter)
@@ -199,13 +199,13 @@ char *print_char_sym(char *format_buffer, size_t *size, const int toprint, int *
 }
 
 /**
- Записывает в строку buffer аргументы из списка ap в соответствии со спецификаторами и модификатором.
+ Р—Р°РїРёСЃС‹РІР°РµС‚ РІ СЃС‚СЂРѕРєСѓ buffer Р°СЂРіСѓРјРµРЅС‚С‹ РёР· СЃРїРёСЃРєР° ap РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃРѕ СЃРїРµС†РёС„РёРєР°С‚РѕСЂР°РјРё Рё РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРј.
 
  * @param buffer
  * @param buff_size
  * @param format
  * @param ap
- * @return возвращает длину полученной строки, не учитывая заключительный нуль.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ РґР»РёРЅСѓ РїРѕР»СѓС‡РµРЅРЅРѕР№ СЃС‚СЂРѕРєРё, РЅРµ СѓС‡РёС‚С‹РІР°СЏ Р·Р°РєР»СЋС‡РёС‚РµР»СЊРЅС‹Р№ РЅСѓР»СЊ.
  */
 
 size_t my_vsnprintf(char *buffer, size_t buff_size, const char *format, va_list ap)
@@ -258,12 +258,12 @@ size_t my_vsnprintf(char *buffer, size_t buff_size, const char *format, va_list 
 }
 
 /**
- Реализуемая функция snprintf.
+ Р РµР°Р»РёР·СѓРµРјР°СЏ С„СѓРЅРєС†РёСЏ snprintf.
 
  * @param buffer
  * @param size
  * @param format
- * @return возвращает длину полученной строки, не учитывая заключительный нуль.
+ * @return РІРѕР·РІСЂР°С‰Р°РµС‚ РґР»РёРЅСѓ РїРѕР»СѓС‡РµРЅРЅРѕР№ СЃС‚СЂРѕРєРё, РЅРµ СѓС‡РёС‚С‹РІР°СЏ Р·Р°РєР»СЋС‡РёС‚РµР»СЊРЅС‹Р№ РЅСѓР»СЊ.
  */
 
 int my_snprintf(char *buffer, size_t size, const char *format, ...)
