@@ -19,6 +19,20 @@ int main()
         }
     }
 
+    {
+        const char *command = "hex %X";
+        int buff_s = 25;
+        int data_array[] = {-65431, 32234769, -323768, 100, 32743466, -32768, -63354321, 0, -327234647};
+        for (int i = 0; i < 9; ++i)
+        {
+            int n = data_array[i];
+            int read_byte1 = snprintf(string1, buff_s, command, n);
+            int read_byte2 = my_snprintf(string2, buff_s, command, n);
+            answer(compare(string1, string2, read_byte1, read_byte2), test_counter);
+            test_counter++;
+        }
+    }
+
     answer(test1(), test_counter);
     test_counter++;
     answer(test2(), test_counter);
