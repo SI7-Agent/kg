@@ -27,14 +27,14 @@
 
 void work(int *code, char *argv[], int argc, int *array_orig, int *array_orig_end, int *array_for_filter, int *array_for_filter_end)
 {
-	printf("Read array:\n");
+    printf("Read array:\n");
     output(array_orig, array_orig_end);
 	
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
         *code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
-		array_orig = array_for_filter;
-		array_orig_end = array_for_filter_end;
+        array_orig = array_for_filter;
+        array_orig_end = array_for_filter_end;
     }
 
     if (*code == ok)
@@ -43,10 +43,10 @@ void work(int *code, char *argv[], int argc, int *array_orig, int *array_orig_en
         printf("\nSorted array:\n");
         output(array_orig, array_orig_end);
         FILE *f_out = fopen(argv[2], "w");
-		if (f_out)
+        if (f_out)
         {
             record(f_out, array_orig, array_orig_end);
             fclose(f_out);
-		}
-	}
+        }
+    }
 }
