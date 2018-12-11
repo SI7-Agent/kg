@@ -13,7 +13,7 @@
 
 int main(int argc, char *argv[])
 {
-    index code = 0;
+    index code = ok;
     if (argc < 3)
         code = wrong_argv;
     else
@@ -43,17 +43,15 @@ int main(int argc, char *argv[])
                     else
                     {
                         int *array_orig_end = array_orig + size;
-                        int *array_start = array_orig;
-
                         int *array_for_filter = NULL;
                         int *array_for_filter_end = NULL;
 						
-                        printf("Read array:\n");
-                        output(array_orig, array_orig_end);
-                        work(&code, argv, argc, array_orig, array_orig_end, array_start, array_for_filter, array_for_filter_end);
+                        work(&code, argv, argc, array_orig, array_orig_end, array_for_filter, array_for_filter_end);
 
-                        free(array_for_filter);
-                        free(array_orig);
+						if (array_for_filter)
+							free(array_for_filter);
+						if (array_orig)
+							free(array_orig);
                     }
                 }
             }
