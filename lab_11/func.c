@@ -1,13 +1,13 @@
 #include "func.h"
 
 /**
- Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑ‚ ÑÐ¸Ð¼Ð²Ð¾Ð» cur_sym Ð² Ð¼Ð°ÑÑÐ¸Ð² ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð² (ÑÑ‚Ñ€Ð¾ÐºÑƒ) format_buffer.
+ Çàïèñûâàåò ñèìâîë cur_sym â ìàññèâ ñèìâîëîâ (ñòðîêó) format_buffer.
 
  * @param format_buffer
  * @param size
  * @param cur_sym
  * @param global_counter
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° ÑÑ‚Ñ€Ð¾ÐºÑƒ format_buffer Ñ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ð½Ñ‹Ð¼ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð¼ cur_sym.
+ * @return âîçâðàùàåò óêàçàòåëü íà ñòðîêó format_buffer ñ çàïèñàííûì ñèìâîëîì cur_sym.
  */
 
 char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_counter)
@@ -23,17 +23,17 @@ char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_c
 }
 
 /**
- Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ Ð¿Ð¾Ð»Ð½ÑƒÑŽ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð°Ñ€Ð³ÑƒÐ¼ÐµÐ½Ñ‚Ð° toconvert Ð² Ð²Ð¸Ð´Ðµ hex-Ñ‡Ð¸ÑÐ»Ð° Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ format_buffer.
+ Âûïîëíÿåò ïîëíóþ çàïèñü àðãóìåíòà toconvert â âèäå hex-÷èñëà, ðàçìåðà unsigned short int, â ñòðîêó format_buffer.
 
  * @param format_buffer
  * @param size
  * @param toconvert
  * @param global_counter
  * @param sym
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° ÑÑ‚Ñ€Ð¾ÐºÑƒ format_buffer Ñ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ð½Ñ‹Ð¼ hex-Ñ‡Ð¸ÑÐ»Ð¾Ð¼ toconvert.
+ * @return âîçâðàùàåò óêàçàòåëü íà ñòðîêó format_buffer ñ çàïèñàííûì hex-÷èñëîì toconvert.
  */
 
-char *print_hex_id(char *format_buffer, size_t *size, const unsigned short toconvert, int *global_counter, char sym)
+char *print_short_hex(char *format_buffer, size_t *size, const unsigned short toconvert, int *global_counter, char sym)
 {
     int tmp = toconvert;
     const char hex_big[] = "0123456789ABCDEF";
@@ -44,7 +44,7 @@ char *print_hex_id(char *format_buffer, size_t *size, const unsigned short tocon
         hexDigits = hex_small;
     else
         hexDigits = hex_big;
-    char result[] = "0000\0";
+    char result[5];
     for (int i = 3; i >= 0; i--)
     {
         result[i] = hexDigits[tmp % 16];
@@ -52,7 +52,6 @@ char *print_hex_id(char *format_buffer, size_t *size, const unsigned short tocon
     }
 
     int flag = 0;
-
     for (int i = 0; i < 4; ++i)
     {
         if (result[i] != '0')
@@ -71,10 +70,59 @@ char *print_hex_id(char *format_buffer, size_t *size, const unsigned short tocon
 }
 
 /**
- Ð’Ñ‹ÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ Ð´Ð»Ð¸Ð½Ñƒ Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼Ð¾Ð³Ð¾ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð°.
+ Âûïîëíÿåò ïîëíóþ çàïèñü àðãóìåíòà toconvert â âèäå hex-÷èñëà, ðàçìåðà unsigned int, â ñòðîêó format_buffer.
+
+ * @param format_buffer
+ * @param size
+ * @param toconvert
+ * @param global_counter
+ * @param sym
+ * @return âîçâðàùàåò óêàçàòåëü íà ñòðîêó format_buffer ñ çàïèñàííûì hex-÷èñëîì toconvert.
+ */
+
+char *print_full_hex(char *format_buffer, size_t *size, const unsigned int toconvert, int *global_counter, char sym)
+{
+    unsigned int tmp = toconvert;
+    if (tmp < 0)
+        tmp += 4294967295;
+    const char hex_big[] = "0123456789ABCDEF";
+    const char hex_small[] = "0123456789abcdef";
+
+    const char *hexDigits = NULL;
+    if (sym == 'x')
+        hexDigits = hex_small;
+    else
+        hexDigits = hex_big;
+    char result[9];
+    for (int i = 7; i >= 0; i--)
+    {
+        result[i] = hexDigits[tmp % 16];
+        tmp = tmp / 16;
+    }
+
+    int flag = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        if (result[i] != '0')
+            flag = 1;
+        else
+            if (flag == 0)
+                continue;
+
+        format_buffer = print(format_buffer, size, result[i], global_counter);
+    }
+
+    if (flag == 0)
+        format_buffer = print(format_buffer, size, '0', global_counter);
+
+    return format_buffer;
+}
+
+/**
+ Âûñ÷èòûâàåò äëèíó çàïèñûâàåìîãî öåëîãî ÷èñëà.
 
  * @param num
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð´Ð»Ð¸Ð½Ñƒ Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼Ð¾Ð³Ð¾ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð°.
+ * @return âîçâðàùàåò äëèíó çàïèñûâàåìîãî öåëîãî ÷èñëà.
  */
 
 int digit_len(int num)
@@ -93,11 +141,11 @@ int digit_len(int num)
 }
 
 /**
- ÐšÐ¾Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€ÑƒÐµÑ‚ Ñ†Ð¸Ñ„Ñ€Ñƒ Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼Ð¾Ð³Ð¾ Ñ†ÐµÐ»Ð¾Ð²Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð² ÑÐ¸Ð¼Ð²Ð¾Ð».
+ Êîíâåðòèðóåò öèôðó çàïèñûâàåìîãî öåëîâîãî ÷èñëà â ñèìâîë.
 
  * @param num
  * @param k
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ†Ð¸Ñ„Ñ€Ñƒ Ñ‡Ð¸ÑÐ»Ð° ÐºÐ°Ðº ÑÐ¸Ð¼Ð²Ð¾Ð».
+ * @return âîçâðàùàåò öèôðó ÷èñëà êàê ñèìâîë.
  */
 
 char get_n_char(int num, int k)
@@ -107,14 +155,14 @@ char get_n_char(int num, int k)
 }
 
 /**
- Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ Ð¿Ð¾Ð»Ð½ÑƒÑŽ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð°Ñ€Ð³ÑƒÐ¼ÐµÐ½Ñ‚Ð° toprint Ð² Ð²Ð¸Ð´Ðµ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ format_buffer.
+ Âûïîëíÿåò ïîëíóþ çàïèñü àðãóìåíòà toprint â âèäå öåëîãî ÷èñëà â ñòðîêó format_buffer.
 
  * @param format_buffer
  * @param size
  * @param toconvert
  * @param global_counter
  * @param sym
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° ÑÑ‚Ñ€Ð¾ÐºÑƒ format_buffer Ñ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ð½Ñ‹Ð¼ Ñ†ÐµÐ»Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼ toprint.
+ * @return âîçâðàùàåò óêàçàòåëü íà ñòðîêó format_buffer ñ çàïèñàííûì öåëûì ÷èñëîì toprint.
  */
 
 char *print_int(char *format_buffer, size_t *size, const int toprint, int *global_counter)
@@ -132,14 +180,14 @@ char *print_int(char *format_buffer, size_t *size, const int toprint, int *globa
 }
 
 /**
- Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð°Ñ€Ð³ÑƒÐ¼ÐµÐ½Ñ‚Ð° toprint Ð² Ð²Ð¸Ð´Ðµ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð° Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ format_buffer.
+ Âûïîëíÿåò çàïèñü àðãóìåíòà toprint â âèäå ñèìâîëà â ñòðîêó format_buffer.
 
  * @param format_buffer
  * @param size
  * @param toconvert
  * @param global_counter
  * @param sym
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° ÑÑ‚Ñ€Ð¾ÐºÑƒ format_buffer Ñ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ð½Ñ‹Ð¼ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð¼ toprint.
+ * @return âîçâðàùàåò óêàçàòåëü íà ñòðîêó format_buffer ñ çàïèñàííûì ñèìâîëîì toprint.
  */
 
 char *print_char_sym(char *format_buffer, size_t *size, const int toprint, int *global_counter)
@@ -151,13 +199,13 @@ char *print_char_sym(char *format_buffer, size_t *size, const int toprint, int *
 }
 
 /**
- Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑ‚ Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ buffer Ð°Ñ€Ð³ÑƒÐ¼ÐµÐ½Ñ‚Ñ‹ Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° ap Ð² ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²Ð¸Ð¸ ÑÐ¾ ÑÐ¿ÐµÑ†Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€Ð°Ð¼Ð¸ Ð¸ Ð¼Ð¾Ð´Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€Ð¾Ð¼.
+ Çàïèñûâàåò â ñòðîêó buffer àðãóìåíòû èç ñïèñêà ap â ñîîòâåòñòâèè ñî ñïåöèôèêàòîðàìè è ìîäèôèêàòîðîì.
 
  * @param buffer
  * @param buff_size
  * @param format
  * @param ap
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð´Ð»Ð¸Ð½Ñƒ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸, Ð½Ðµ ÑƒÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°Ñ Ð·Ð°ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ Ð½ÑƒÐ»ÑŒ.
+ * @return âîçâðàùàåò äëèíó ïîëó÷åííîé ñòðîêè, íå ó÷èòûâàÿ çàêëþ÷èòåëüíûé íóëü.
  */
 
 size_t my_vsnprintf(char *buffer, size_t buff_size, const char *format, va_list ap)
@@ -182,13 +230,15 @@ size_t my_vsnprintf(char *buffer, size_t buff_size, const char *format, va_list 
                     case 'c':
                         format_buffer = print_char_sym(format_buffer, &n, va_arg(ap, int), &global_counter);
                         break;
+                    case 'x':
+                    case 'X':
+                        format_buffer = print_full_hex(format_buffer, &n, va_arg(ap, unsigned int), &global_counter, cur_sym);
+                        break;
                     case 'h':
                         if ((cur_sym = *flag_sym++))
                         {
-                            if (cur_sym == 'x')
-                                format_buffer = print_hex_id(format_buffer, &n, (unsigned short)va_arg(ap, unsigned int), &global_counter, cur_sym);
-                            else if (cur_sym == 'X')
-                                format_buffer = print_hex_id(format_buffer, &n, (unsigned short)va_arg(ap, unsigned int), &global_counter, cur_sym);
+                            if ((cur_sym == 'x') || (cur_sym == 'X'))
+                                format_buffer = print_short_hex(format_buffer, &n, (unsigned short)va_arg(ap, unsigned int), &global_counter, cur_sym);
                             else
                             {
                                 format_buffer = print(format_buffer, &n, '%', &global_counter);
@@ -208,12 +258,12 @@ size_t my_vsnprintf(char *buffer, size_t buff_size, const char *format, va_list 
 }
 
 /**
- Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐµÐ¼Ð°Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ snprintf.
+ Ðåàëèçóåìàÿ ôóíêöèÿ snprintf.
 
  * @param buffer
  * @param size
  * @param format
- * @return Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð´Ð»Ð¸Ð½Ñƒ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸, Ð½Ðµ ÑƒÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°Ñ Ð·Ð°ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ Ð½ÑƒÐ»ÑŒ.
+ * @return âîçâðàùàåò äëèíó ïîëó÷åííîé ñòðîêè, íå ó÷èòûâàÿ çàêëþ÷èòåëüíûé íóëü.
  */
 
 int my_snprintf(char *buffer, size_t size, const char *format, ...)
