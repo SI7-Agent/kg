@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "key_funcs.h"
+#include "errors.h"
 
 /**
  Фильтрует указанным способом массив array_start,
@@ -18,33 +19,31 @@
 
 int key(int *array_start, int *array_end, int **array2_start, int **array2_end)
 {
-    int *start_orig = array_start;
     int size = array_end - array_start;
     int ready_to_filter = 0;
+	int code = ok;
 
     if (size == 0)
-        ready_to_filter = -1;
+        code = bad_filter;
     else
     {
-        int average = get_average(array_start, array_end, start_orig, size);
-        ready_to_filter = get_filt_elems(array_start, array_end, start_orig, size, average);
+        int average = get_average(array_start, array_end, size);
+        ready_to_filter = get_filt_elems(array_start, array_end, average);
 
         if (ready_to_filter == 0)
-            ready_to_filter = -2;
+            code = bad_filter;
         else
         {
             *array2_start = (int *)malloc(ready_to_filter * sizeof(int));		
             if (array2_start)
             {
                 *array2_end = *array2_start + ready_to_filter;
-
-                int *start_orig2 = *array2_start;
-                get_array_for_filter(array_start, array_end, start_orig, size, average, start_orig2, *array2_end);
+                get_array_for_filter(array_start, array_end, average, *array2_start, *array2_end);
             }
             else
-                ready_to_filter = -2;
+                code = mem_error;
         }
     }
     
-    return ready_to_filter;
+    return code;
 }
