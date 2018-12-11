@@ -21,7 +21,7 @@ int key(int *array_start, int *array_end, int **array2_start, int **array2_end)
 {
     int size = array_end - array_start;
     int ready_to_filter = 0;
-	int code = ok;
+    int code = ok;
 
     if (size == 0)
         code = bad_filter;
