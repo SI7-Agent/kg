@@ -38,12 +38,10 @@ int *read_array(FILE *f, int size)
 
 void output(int *array_start, int *array_end)
 {
-    int size = array_end - array_start;
-    for (int i = 0; i < size; i++)
+    while (array_start != array_end)
     {
         printf("%d\n", *array_start);
-        if (array_start != array_end)
-            array_start++;
+        array_start++;
     }
 }
 
@@ -55,14 +53,12 @@ void output(int *array_start, int *array_end)
  * @param array_end
  */
 
-void record (FILE *f, int *array_start, int *array_end)
+void record(FILE *f, int *array_start, int *array_end)
 {
-    int size = array_end - array_start;
-    for (int i = 0; i < size; i++)
+    while (array_start != array_end)
     {
         fprintf(f, "%d ", *array_start);
-        if (array_start != array_end)
-            array_start++;
+        array_start++;
     }
 }
 
