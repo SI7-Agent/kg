@@ -48,10 +48,10 @@ int main(int argc, char *argv[])
 						
                         work(&code, argv, argc, array_orig, array_orig_end, array_for_filter, array_for_filter_end);
 
-						if (array_for_filter)
-							free(array_for_filter);
-						if (array_orig)
-							free(array_orig);
+                        if (array_for_filter)
+                            free(array_for_filter);
+                        if (array_orig)
+                            free(array_orig);
                     }
                 }
             }
