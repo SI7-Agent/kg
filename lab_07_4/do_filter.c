@@ -25,21 +25,23 @@
  * @param array_for_filter_end
  */
 
-void work(int *code, char *argv[], int argc, int *array_orig, int *array_orig_end, int *array_for_filter, int *array_for_filter_end)
+int work(char *argv[], int argc, int *array_orig, int *array_orig_end, int *array_for_filter, int *array_for_filter_end)
 {
+    int code = ok;
     printf("Read array:\n");
     output(array_orig, array_orig_end);
 	
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
-        *code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
+        code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
+		free(array_orig);
         array_orig = array_for_filter;
         array_orig_end = array_for_filter_end;
     }
 
-    if (*code == ok)
+    if (code == ok)
     {
-        mysort(array_orig, array_orig_end, sizeof(int), comp_int);
+        mysort(array_orig, array_orig_end - array_orig, sizeof(int), comp_int);
         printf("\nSorted array:\n");
         output(array_orig, array_orig_end);
         FILE *f_out = fopen(argv[2], "w");
@@ -49,4 +51,5 @@ void work(int *code, char *argv[], int argc, int *array_orig, int *array_orig_en
             fclose(f_out);
         }
     }
+    return code;
 }
