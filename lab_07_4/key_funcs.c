@@ -1,11 +1,10 @@
 #include <stdio.h>
+
 /**
  Вычисляет среднее значение элементов данного массива.
 
  * @param array_start
  * @param array_end
- * @param start_orig
- * @param size
  * @return возвращает среднее значение элементов данного массива.
  */
 
@@ -27,8 +26,6 @@ int get_average(int *array_start, int *array_end, int size)
 
  * @param array_start
  * @param array_end
- * @param start_orig
- * @param size
  * @param average
  * @return возвращает число элементов, пригодных для фильтрации.
  */
@@ -51,8 +48,6 @@ int get_filt_elems(int *array_start, int *array_end, int average)
 
  * @param array_start
  * @param array_end
- * @param start_orig
- * @param size
  * @param average
  * @param start_orig2
  * @param array2_end

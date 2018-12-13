@@ -2,10 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <malloc.h>
-#include <time.h>
 
 #include "read_array_test.h"
-#include "tick.h"
 #include "key.h"
 #include "get_size_test.h"
 #include "mysort.h"
@@ -15,14 +13,14 @@
 /**
  Выполняет работу программы после окончания проверок файлов и выделения памяти.
 
- * @param code
  * @param argv
  * @param argc
  * @param array_orig
  * @param array_orig_end
- * @param array_start
  * @param array_for_filter
  * @param array_for_filter_end
+ 
+ * @return возвращает код ошибки.
  */
 
 int work(char *argv[], int argc, int *array_orig, int *array_orig_end, int *array_for_filter, int *array_for_filter_end)

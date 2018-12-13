@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+
 #include "key_funcs.h"
 #include "errors.h"
 
@@ -13,8 +14,7 @@
  * @param array2_start
  * @param array2_end
 
- * @return возвращает размер отфильтрованного массива
- * или код ошибки в случае некорректных данных
+ * @return возвращает код ошибки.
  */
 
 int key(int *array_start, int *array_end, int **array2_start, int **array2_end)

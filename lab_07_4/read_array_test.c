@@ -2,10 +2,12 @@
 #include <stdlib.h>
 
 /**
- Заполняет массив array_orig данными из файла f.
+ Создает массив и заполняет его данными из файла f.
 
  * @param f
- * @param array_orig
+ * @param size
+ 
+ * @return возвращает указатель на начало заполненного массива.
  */
 
 int *read_array(FILE *f, int size)
