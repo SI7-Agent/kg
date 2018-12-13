@@ -29,12 +29,12 @@ void swap(char **newElement, char **location, void **member)
  * @param size
  */
  
-void mysort (void* array_start, void* array_end, size_t size, int (*compar)(const void*, const void*))
+void mysort (void* array_start, size_t num, size_t size, int (*compar)(const void*, const void*))
 {
     void *member = malloc(size * sizeof(void*)), *base = array_start;
     char *newElement, *location;
     char *start = (char*)array_start;
-    char *end = (char*)array_end;
+    char *end = (char*)((int*)array_start + num);
     start += size;
     if (member)
     {
