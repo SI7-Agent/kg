@@ -41,9 +41,6 @@ int main(int argc, char *argv[])
     if (!code)
         code = work(argv, argc, array_orig, array_orig_end, array_for_filter, array_for_filter_end);
 
-    if (array_orig)
-        free(array_orig);
-
     if (f)
         fclose(f);
 

@@ -50,6 +50,7 @@ int work(char *argv[], int argc, int *array_orig, int *array_orig_end, int *arra
             record(f_out, array_orig, array_orig_end);
             fclose(f_out);
         }
+        free(array_orig);
     }
     return code;
 }
