@@ -3,5 +3,6 @@
 
 int get_size(FILE *f);
 int get_pos(FILE *f);
+int check_file(FILE *f);
 
 #endif

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "errors.h"
+
 /**
  Вычисляет размер массива, хранящийся в файле f.
 
@@ -39,4 +41,35 @@ int get_pos(FILE *f)
         pos = ftell(f);
 
     return pos;
+}
+
+/**
+ Проверяет файл на пригодность к считыванию данных.
+
+ * @param f
+ * @return возвращает код ошибки.
+ */
+
+int check_file(FILE *f)
+{
+    int code = ok;
+    if (!f)
+        code = no_file;
+    else
+    {
+        int size = get_size(f);
+        if (size == 0)
+            code = empty_file;
+        else
+        {
+            long pos, pos_end;
+            fseek(f, 0, SEEK_END);
+            pos_end = ftell(f);
+            pos = get_pos(f);
+
+            if (pos != pos_end)
+                code = bad_data_file;
+        }
+    }
+    return code;
 }
