@@ -32,7 +32,7 @@ int work(char *argv[], int argc, int *array_orig, int *array_orig_end, int *arra
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
         code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
-		free(array_orig);
+        free(array_orig);
         array_orig = array_for_filter;
         array_orig_end = array_for_filter_end;
     }
