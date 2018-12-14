@@ -6,13 +6,13 @@
 
 typedef enum errors_index
 {
-	mem_error = -6,
-	bad_data_file,
-	bad_filter,
-	empty_file,
-	no_file,
+    mem_error = -6,
+    bad_data_file,
+    bad_filter,
+    empty_file,
+    no_file,
     wrong_argv,	
-	ok
+    ok
 } index;
 
 void print_error(index code, char *argv[]);
