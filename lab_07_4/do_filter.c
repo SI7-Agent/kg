@@ -32,7 +32,7 @@ int work(char *argv[], int argc, int *array_orig, int *array_orig_end)
         int *array_for_filter = NULL;
         int *array_for_filter_end = NULL;
 
-		code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
+        code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
         free(array_orig);
         array_orig = array_for_filter;
         array_orig_end = array_for_filter_end;
