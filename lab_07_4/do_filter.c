@@ -22,17 +22,17 @@
  */
 
 int work(char *argv[], int argc, int *array_orig, int *array_orig_end)
-{
-    int *array_for_filter = NULL;
-    int *array_for_filter_end = NULL;
-	
+{	
     int code = ok;
     printf("Read array:\n");
     output(array_orig, array_orig_end);
 	
     if ((argc > 3) && (strcmp(argv[3], "f") == 0))
     {
-        code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
+        int *array_for_filter = NULL;
+        int *array_for_filter_end = NULL;
+
+		code = key(array_orig, array_orig_end, &array_for_filter, &array_for_filter_end);
         free(array_orig);
         array_orig = array_for_filter;
         array_orig_end = array_for_filter_end;
