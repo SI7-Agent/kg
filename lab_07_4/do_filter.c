@@ -17,14 +17,15 @@
  * @param argc
  * @param array_orig
  * @param array_orig_end
- * @param array_for_filter
- * @param array_for_filter_end
  
  * @return возвращает код ошибки.
  */
 
-int work(char *argv[], int argc, int *array_orig, int *array_orig_end, int *array_for_filter, int *array_for_filter_end)
+int work(char *argv[], int argc, int *array_orig, int *array_orig_end)
 {
+    int *array_for_filter = NULL;
+    int *array_for_filter_end = NULL;
+	
     int code = ok;
     printf("Read array:\n");
     output(array_orig, array_orig_end);

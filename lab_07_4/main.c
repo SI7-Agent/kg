@@ -17,8 +17,6 @@ int main(int argc, char *argv[])
     FILE *f = NULL;
     int *array_orig = NULL;
     int *array_orig_end = NULL;
-    int *array_for_filter = NULL;
-    int *array_for_filter_end = NULL;
 
     if (argc < 3)
         code = wrong_argv;
@@ -39,7 +37,7 @@ int main(int argc, char *argv[])
     }
 
     if (!code)
-        code = work(argv, argc, array_orig, array_orig_end, array_for_filter, array_for_filter_end);
+        code = work(argv, argc, array_orig, array_orig_end);
 
     if (f)
         fclose(f);
