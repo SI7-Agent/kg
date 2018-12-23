@@ -1,5 +1,12 @@
 #include "tests.h"
 
+/**
+ Тестирует добавление элементов.
+ 
+ * @param list
+ * @param data
+ */
+
 void test1(node_type *list, int *data)
 {
     int counter = 0;
@@ -21,6 +28,14 @@ void test1(node_type *list, int *data)
     else
         printf("Test passed\n");
 }
+
+/**
+ Тестирует объединение списков.
+ 
+ * @param list1
+ * @param list2
+ * @param data
+ */
 
 void test2(node_type *list1, node_type *list2, int *data)
 {
@@ -45,6 +60,14 @@ void test2(node_type *list1, node_type *list2, int *data)
         printf("Test passed\n");
 }
 
+/**
+ Тестирует сортировку списка.
+ 
+ * @param list
+ * @param data
+ */
+
+
 void test3(node_type *list, int *data)
 {
     sort(&list);
@@ -67,6 +90,13 @@ void test3(node_type *list, int *data)
     else
         printf("Test passed\n");
 }
+
+/**
+ Тестирует извлечение элементов с начала и конца списка.
+ 
+ * @param list
+ * @param data
+ */
 
 void test4(node_type *list, int *data)
 {
