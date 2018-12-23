@@ -56,9 +56,7 @@ char *print_short_hex(char *format_buffer, size_t *size, const unsigned short to
     {
         if (result[i] != '0')
             flag = 1;
-        //else
-          //  if (flag == 0)
-            //    continue;
+
         if (flag)
             format_buffer = print(format_buffer, size, result[i], global_counter);
     }
@@ -105,9 +103,7 @@ char *print_full_hex(char *format_buffer, size_t *size, const unsigned int tocon
     {
         if (result[i] != '0')
             flag = 1;
-        //else
-          //  if (flag == 0)
-            //    continue;
+
         if (flag)
             format_buffer = print(format_buffer, size, result[i], global_counter);
     }
