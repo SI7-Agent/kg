@@ -152,15 +152,15 @@ void process(char *argv[], int argc, int *code)
             if (argc > 4)
             {
                 int rows2 = 0, cols2 = 0;
-		        FILE *matr2 = fopen(argv[3], "r");
+                FILE *matr2 = fopen(argv[3], "r");
                 if (matr2)
-			    {
+                {
                     float **matrix2 = fill_matrix(matr2, &rows2, &cols2);
 
                     if (matrix2)
                     {
                         if (strcmp(argv[1], "a") == 0)
-							*code = make_sum(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
+                            *code = make_sum(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
 
                         if (strcmp(argv[1], "m") == 0)
                             *code = make_multy(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
@@ -172,7 +172,7 @@ void process(char *argv[], int argc, int *code)
                     fclose(matr2);
                 }
                 else
-					*code = no_file;
+                    *code = no_file;
             }		    
 			
             if (strcmp(argv[1], "o") == 0)

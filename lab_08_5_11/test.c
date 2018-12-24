@@ -28,7 +28,7 @@ int compare_err(FILE *f1, FILE *f2)
 			
             if (!(feof(f1) && !feof(f2)) && (feof(f1) || feof(f2)))
                 flag = 1;
-		}
+        }
         while ((feof(f1) && feof(f2)) || feof(f1) || feof(f2) || ch1 != ch2);	
     return flag;
 }
@@ -53,9 +53,8 @@ void determ_test(FILE *f, char *argv[])
         int cols1;
 
         float **matrix1 = fill_matrix(matr1, &rows1, &cols1);
-		char *name = argv[3];
 
-        make_det(matrix1, rows1, cols1, name);
+        make_det(matrix1, rows1, cols1, argv[3]);
         free_matrix(matrix1);
         fclose(matr1);
 
@@ -76,7 +75,7 @@ void determ_test(FILE *f, char *argv[])
 void sum_test(FILE *f, char *argv[])
 {
     FILE *matr1 = fopen(argv[2], "r");
-	FILE *matr2 = fopen(argv[3], "r");
+    FILE *matr2 = fopen(argv[3], "r");
     FILE *res = fopen("out_0.txt", "w");
 	
     if ((!matr1) || (!matr2))
@@ -96,10 +95,10 @@ void sum_test(FILE *f, char *argv[])
         float **matrix1 = fill_matrix(matr1, &rows1, &cols1);
         float **matrix2 = fill_matrix(matr2, &rows2, &cols2);
 		
-		make_sum(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
+        make_sum(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
         free_matrix(matrix1);
         fclose(matr1);
-		free_matrix(matrix2);
+        free_matrix(matrix2);
         fclose(matr2);
 
         res = fopen("out_0.txt", "r");
@@ -119,7 +118,7 @@ void sum_test(FILE *f, char *argv[])
 void mult_test(FILE *f, char *argv[])
 {
     FILE *matr1 = fopen(argv[2], "r");
-	FILE *matr2 = fopen(argv[3], "r");
+    FILE *matr2 = fopen(argv[3], "r");
     FILE *res = fopen("out_0.txt", "w");
 	
     if ((!matr1) || (!matr2))
@@ -142,7 +141,7 @@ void mult_test(FILE *f, char *argv[])
         make_multy(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
         free_matrix(matrix1);
         fclose(matr1);
-		free_matrix(matrix2);
+        free_matrix(matrix2);
         fclose(matr2);
 
         res = fopen("out_0.txt", "r");

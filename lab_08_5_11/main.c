@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[])
 {
-	index code;
+    index code;
     if (argc > 3)
         process(argv, argc, &code);
     else
