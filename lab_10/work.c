@@ -44,7 +44,7 @@ void fill_list_mas(int **mas1, int **mas2, node_type **head1, node_type **head2,
         {
             fscanf(f, "%d", &data1);
             *(*mas1 + i) = data1;
-            addelem(head1, (*mas1 + i));
+            add_elem(head1, (*mas1 + i));
         }
 
         fseek(f, 3, SEEK_CUR);
@@ -53,7 +53,7 @@ void fill_list_mas(int **mas1, int **mas2, node_type **head1, node_type **head2,
         {
             fscanf(f, "%d", &data1);
             *(*mas2 + i) = data1;
-            addelem(head2, (*mas2 + i));
+            add_elem(head2, (*mas2 + i));
         }
     }
 }
@@ -89,7 +89,7 @@ void task(FILE *out, node_type *head1, node_type *head2)
 
     printf("Sorted united:\n");
     fprintf(out, "Sorted united:\n");
-    listprint(tmp1);
+    list_print(tmp1);
     print_in_file(out, tmp1);
 
     printf("\nMax 1: %d, Min 1: %d, Max 2: %d, Min 2: %d\n", *(int*)max_1, *(int*)min_1, *(int*)max_2, *(int*)min_2);
@@ -150,53 +150,53 @@ void do_func(FILE *f1, FILE *f2, char *argv[])
         if (strcmp("pop_f", argv[1]) == 0)
         {
             printf("Start list:\n");
-            listprint(list1);
+            list_print(list1);
             void *data = pop_front(&list1);
             printf("\nPoped element: %d\n", *(int*)data);
             printf("Final list:\n");
-            listprint(list1);
+            list_print(list1);
             print_in_file(f2, list1);
             free_list(list1);
         }
         if (strcmp("pop_b", argv[1]) == 0)
         {
             printf("Start list:\n");
-            listprint(list1);
+            list_print(list1);
             void *data = pop_back(&list1);
             printf("\nPoped element: %d\n", *(int*)data);
             printf("Final list:\n");
-            listprint(list1);
+            list_print(list1);
             print_in_file(f2, list1);
             free_list(list1);
         }
         if (strcmp("append", argv[1]) == 0)
         {
             printf("Start list 1:\n");
-            listprint(list1);
+            list_print(list1);
             printf("\nStart list 2:\n");
-            listprint(list2);
+            list_print(list2);
             append(&list1, &list2);
             printf("\n\nList 1 after append:\n");
-            listprint(list1);
+            list_print(list1);
             printf("\nStart list 2 after append:\n");
-            listprint(list2);
+            list_print(list2);
             print_in_file(f2, list1);
             free_list(list1);
         }
         if (strcmp("sort", argv[1]) == 0)
         {
             printf("Start list 1:\n");
-            listprint(list1);
+            list_print(list1);
             sort(&list1);
             printf("\nList 1 after sort:\n");
-            listprint(list1);
+            list_print(list1);
             print_in_file(f2, list1);
             fprintf(f2, "\n");
             printf("\n\nStart list 2:\n");
-            listprint(list2);
+            list_print(list2);
             sort(&list2);
             printf("\nList 2 after sort:\n");
-            listprint(list2);
+            list_print(list2);
             print_in_file(f2, list2);
             free_list(list1);
             free_list(list2);

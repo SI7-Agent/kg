@@ -15,29 +15,29 @@ int main()
     int expected3[] = {0, 0, 9, 9, 10, 10, 15, 15, 15, 15, 20, 20, 30, 30};
     int expected4[] = {15, 10};
 
-    addelem(&list_test1, &data2);
-    addelem(&list_test1, &data3);
-    addelem(&list_test1, &data1);
-    addelem(&list_test1, &data7);
-    addelem(&list_test1, &data5);
-    addelem(&list_test1, &data6);
-    addelem(&list_test1, &data4);
+    add_elem(&list_test1, &data2);
+    add_elem(&list_test1, &data3);
+    add_elem(&list_test1, &data1);
+    add_elem(&list_test1, &data7);
+    add_elem(&list_test1, &data5);
+    add_elem(&list_test1, &data6);
+    add_elem(&list_test1, &data4);
 
-    addelem(&list_test2, &data1);
-    addelem(&list_test2, &data2);
-    addelem(&list_test2, &data3);
-    addelem(&list_test2, &data4);
-    addelem(&list_test2, &data5);
-    addelem(&list_test2, &data6);
-    addelem(&list_test2, &data7);
+    add_elem(&list_test2, &data1);
+    add_elem(&list_test2, &data2);
+    add_elem(&list_test2, &data3);
+    add_elem(&list_test2, &data4);
+    add_elem(&list_test2, &data5);
+    add_elem(&list_test2, &data6);
+    add_elem(&list_test2, &data7);
 
-    addelem(&list_test3, &data7);
-    addelem(&list_test3, &data6);
-    addelem(&list_test3, &data5);
-    addelem(&list_test3, &data4);
-    addelem(&list_test3, &data3);
-    addelem(&list_test3, &data2);
-    addelem(&list_test3, &data1);
+    add_elem(&list_test3, &data7);
+    add_elem(&list_test3, &data6);
+    add_elem(&list_test3, &data5);
+    add_elem(&list_test3, &data4);
+    add_elem(&list_test3, &data3);
+    add_elem(&list_test3, &data2);
+    add_elem(&list_test3, &data1);
 
     printf("Adding elements test\n");
     test1(list_test1, expected1);

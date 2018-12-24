@@ -7,7 +7,7 @@
  * @param data
  */
 
-void addelem(node_type **head, void *data)
+void add_elem(node_type **head, void *data)
 {
     node_type *tmp = (node_type*)malloc(sizeof(node_type));
     tmp->data = data;
@@ -124,7 +124,7 @@ void append(node_type **head_a, node_type **head_b)
         while (*head_b)
         {
             void *data = pop_front(head_b);
-            addelem(head_a, data);
+            add_elem(head_a, data);
         }
     }
 }
@@ -178,18 +178,18 @@ int (*comparator)(const void *, const void *))
  * @param root
  */
 
-void sort(node_type **root)
+void sort(node_type **head)
 {
     node_type *element_to_insert, *new_root = NULL;
 
-    for(node_type *current_element = *root; current_element; )
+    for(node_type *current_element = *head; current_element; )
     {
         element_to_insert = current_element;
         current_element = current_element->next;
         sorted_insert(&new_root, element_to_insert, comp_int);
     }
     if(new_root)
-        *root = new_root;
+        *head = new_root;
 }
 
 /**
@@ -198,7 +198,7 @@ void sort(node_type **root)
  * @param head
  */
 
-void listprint(node_type *head)
+void list_print(node_type *head)
 {
     if (head)
     {
@@ -222,11 +222,11 @@ void listprint(node_type *head)
  * @return возвращает список без первого элемента.
  */
 
-node_type *deletehead(node_type *root)
+node_type *delete_head(node_type *head)
 {
   node_type *temp;
-  temp = root->next;
-  free(root);
+  temp = head->next;
+  free(head);
   return(temp);
 }
 
@@ -240,7 +240,7 @@ void free_list(node_type *head)
 {
     if (head)
         while (head)
-            head = deletehead(head);
+            head = delete_head(head);
 }
 
 /**
@@ -254,7 +254,7 @@ void get_list_copy(node_type *orig, node_type **copy)
 {
     while (orig)
     {
-        addelem(copy, orig->data);
+        add_elem(copy, orig->data);
         orig = orig->next;
     }
 }
