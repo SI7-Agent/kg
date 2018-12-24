@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -std=c99 -Wall -Werror -pedantic
-OBJ := get_matrix.o operations.o print_matrix.o process.o
+OBJ := get_matrix.o operations.o print_matrix.o process.o errors.o
 
 %.o : %.c *.h
 	$(CC) $(CFLAGS) -c $<

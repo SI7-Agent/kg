@@ -16,24 +16,20 @@ int compare_err(FILE *f1, FILE *f2)
     char ch1;
     char ch2;
 
-    if ((f1 == NULL && f2 != NULL) || (f1 != NULL && f2 == NULL))
+    if ((!f1 && f2) || (f1 && !f2))
         flag = 1;
-    else if (f1 == NULL && f2 == NULL)
+    else if (!f1 && !f2)
         flag = 0;
     else
-        while (1)
+        do
         {
             ch1 = getc(f1);
             ch2 = getc(f2);
-
-            if (feof(f1) && feof(f2))
-                break;
-            else if (feof(f1) || feof(f2) || ch1 != ch2)
-            {
+			
+            if (!(feof(f1) && !feof(f2)) && (feof(f1) || feof(f2)))
                 flag = 1;
-                break;
-            }
-        }
+		}
+        while ((feof(f1) && feof(f2)) || feof(f1) || feof(f2) || ch1 != ch2);	
     return flag;
 }
 
@@ -57,8 +53,9 @@ void determ_test(FILE *f, char *argv[])
         int cols1;
 
         float **matrix1 = fill_matrix(matr1, &rows1, &cols1);
+		char *name = argv[3];
 
-        make_det(matrix1, rows1, cols1, argv);
+        make_det(matrix1, rows1, cols1, name);
         free_matrix(matrix1);
         fclose(matr1);
 
@@ -79,9 +76,10 @@ void determ_test(FILE *f, char *argv[])
 void sum_test(FILE *f, char *argv[])
 {
     FILE *matr1 = fopen(argv[2], "r");
+	FILE *matr2 = fopen(argv[3], "r");
     FILE *res = fopen("out_0.txt", "w");
 	
-    if (!matr1)
+    if ((!matr1) || (!matr2))
     {
         printf("Error opening file\n");
         printf("Test passed\n\n");
@@ -92,14 +90,17 @@ void sum_test(FILE *f, char *argv[])
     {
         fclose(res);
 
-        int rows1;
-        int cols1;
+        int rows1, rows2;
+        int cols1, cols2;
 
         float **matrix1 = fill_matrix(matr1, &rows1, &cols1);
-
-        make_sum(matrix1, rows1, cols1, argv);
+        float **matrix2 = fill_matrix(matr2, &rows2, &cols2);
+		
+		make_sum(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
         free_matrix(matrix1);
         fclose(matr1);
+		free_matrix(matrix2);
+        fclose(matr2);
 
         res = fopen("out_0.txt", "r");
 
@@ -118,9 +119,10 @@ void sum_test(FILE *f, char *argv[])
 void mult_test(FILE *f, char *argv[])
 {
     FILE *matr1 = fopen(argv[2], "r");
+	FILE *matr2 = fopen(argv[3], "r");
     FILE *res = fopen("out_0.txt", "w");
 	
-    if (!matr1)
+    if ((!matr1) || (!matr2))
     {
         printf("Error opening file\n");
         printf("Test passed\n\n");
@@ -131,14 +133,17 @@ void mult_test(FILE *f, char *argv[])
     {
         fclose(res);
 
-        int rows1;
-        int cols1;
+        int rows1, rows2;
+        int cols1, cols2;
 
         float **matrix1 = fill_matrix(matr1, &rows1, &cols1);
+        float **matrix2 = fill_matrix(matr2, &rows2, &cols2);
 
-        make_multy(matrix1, rows1, cols1, argv);
+        make_multy(matrix1, matrix2, rows1, cols1, rows2, cols2, argv[4]);
         free_matrix(matrix1);
         fclose(matr1);
+		free_matrix(matrix2);
+        fclose(matr2);
 
         res = fopen("out_0.txt", "r");
 
@@ -174,37 +179,19 @@ int main()
     determ_test(f3, test3_argv);
     fclose(f3);
     //-------
-    printf("Data testing for concatination...\n");
-    FILE *f4 = fopen("out_4.txt", "r");
-    char *test4_argv[] = {"test.exe", "a", "in_41.txt", "in_42.txt", "out_0.txt"};
-    sum_test(f4, test4_argv);
-    fclose(f4);
-    //-------
-    printf("Data testing for multiplication...\n");
-    FILE *f5 = fopen("out_5.txt", "r");
-    char *test5_argv[] = {"test.exe", "m", "in_51.txt", "in_52.txt", "out_0.txt"};
-    mult_test(f5, test5_argv);
-    fclose(f5);
-    //-------
-    printf("Data testing for determinator...\n");
-    FILE *f6 = fopen("out_6.txt", "r");
-    char *test6_argv[] = {"test.exe", "o", "in_61.txt", "out_0.txt"};
-    determ_test(f6, test6_argv);
-    fclose(f6);
-    //-------
     printf("Files testing for concatination...\n");
     FILE *f7 = fopen("out_7.txt", "r");
     char *test7_argv[] = {"test.exe", "a", "in_711.txt", "in_712.txt", "out_0.txt"};
     sum_test(f7, test7_argv);
     fclose(f7);
     //-------
-    printf("Data testing for multiplication...\n");
+    printf("Files testing for multiplication...\n");
     FILE *f8 = fopen("out_8.txt", "r");
     char *test8_argv[] = {"test.exe", "m", "in_811.txt", "in_812.txt", "out_0.txt"};
     mult_test(f8, test8_argv);
     fclose(f8);
     //-------
-    printf("Data testing for determinator...\n");
+    printf("Files testing for determinator...\n");
     FILE *f9 = fopen("out_9.txt", "r");
     char *test9_argv[] = {"test.exe", "o", "in_911.txt", "out_0.txt"};
     determ_test(f9, test9_argv);

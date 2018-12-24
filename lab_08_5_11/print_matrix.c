@@ -30,9 +30,9 @@ void output(float **matr, int rows, int cols)
  * @param cols
  */
 
-void record_matr(char *name_res[], float **matr, int rows, int cols)
+void record_matr(char *name_res, float **matr, int rows, int cols)
 {
-    FILE *f_res = fopen(name_res[4], "w");
+    FILE *f_res = fopen(name_res, "w");
 	
     if (!f_res)
         printf("Error opening file\n");
@@ -59,9 +59,9 @@ void record_matr(char *name_res[], float **matr, int rows, int cols)
  * @param num
  */
 
-void record_num(char *name_res[], float num)
+void record_num(char *name_res, float num)
 {
-    FILE *f_res = fopen(name_res[3], "w");
+    FILE *f_res = fopen(name_res, "w");
 	
     if (!f_res)
         printf("Error opening file\n");

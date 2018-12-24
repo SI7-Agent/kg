@@ -7,13 +7,16 @@
 #include "print_matrix.h"
 #include "operations.h"
 #include "process.h"
+#include "errors.h"
 
 int main(int argc, char *argv[])
 {
+	index code;
     if (argc > 3)
-        process(argv);
+        process(argv, argc, &code);
     else
-        printf("Arguments error\n");
+        code = wrong_argv;
+    print_error(code);
 
     return 0;
 }

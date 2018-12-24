@@ -124,7 +124,7 @@ float determinant(float **matr, int m, int size, int *err)
     {
         if (p)
         {
-            for (i = 0; i<m; i++)
+            for (i = 0; i < m; i++)
             {
                 get_minor(matr, p, i, 0, m);
                 d = d + k * matr[i][0] * determinant(p, n, m, err);
