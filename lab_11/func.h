@@ -15,6 +15,10 @@
 #define FAIL 1
 
 char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_counter);
+const char *get_alphabet(char sym);
+void get_hex_num(int tmp, int size, const char *hexDigits, char result[size]);
+void get_hex_num_unsigned(unsigned int tmp, int size, const char *hexDigits, char result[size]);
+int check_for_zero(int size_mas, char result[size_mas], char **format_buffer, size_t *size, int *global_counter);
 char *print_short_hex(char *format_buffer, size_t *size, const unsigned short toconvert, int *global_counter, char sym);
 char *print_full_hex(char *format_buffer, size_t *size, const unsigned int toconvert, int *global_counter, char sym);
 int digit_len(int num);

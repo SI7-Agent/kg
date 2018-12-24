@@ -21,6 +21,90 @@ char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_c
     }
     return format_buffer;
 }
+ 
+/**
+ Проверяет тип модификатора (использование строчных или прописных букв алфавита).
+
+ * @param sym
+ * @return возвращает указатель на массив с подходящим алфавитом.
+ */
+ 
+const char *get_alphabet(char sym)
+{
+	const char hex_big[] = "0123456789ABCDEF";
+    const char hex_small[] = "0123456789abcdef";
+	const char *hexDigits = NULL;
+	if (sym == 'x')
+	{
+        hexDigits = hex_small;
+	}
+    else
+	{
+		hexDigits = hex_big;
+	}
+	return hexDigits;
+}
+
+/**
+ Заполняет массив result символами конвертированного short int числа.
+
+ * @param tmp
+ * @param size
+ * @param hexDigits
+ * @param result
+ */
+
+void get_hex_num(int tmp, int size, const char *hexDigits, char result[size])
+{
+	for (int i = size - 2; i >= 0; i--)
+    {
+        result[i] = hexDigits[tmp % 16];
+        tmp = tmp / 16;
+    }
+}
+
+/**
+ Заполняет массив result символами конвертированного unsigned int числа.
+
+ * @param tmp
+ * @param size
+ * @param hexDigits
+ * @param result
+ */
+
+void get_hex_num_unsigned(unsigned int tmp, int size, const char *hexDigits, char result[size])
+{
+	for (int i = size - 2; i >= 0; i--)
+    {
+        result[i] = hexDigits[tmp % 16];
+        tmp = tmp / 16;
+    }
+}
+
+/**
+ Проверяет число на ноль, попутно пишет символ, если число персталоявляться нулевым согласно признакам.
+
+ * @param size_mas
+ * @param result
+ * @param format_buffer
+ * @param size
+ * @param global_counter
+ * @return возвращает ноль, если число - на ноль, единицу - в противном случае.
+ */
+
+int check_for_zero(int size_mas, char result[size_mas], char **format_buffer, size_t *size, int *global_counter)
+{
+	int flag_no_zero = 0;
+	for (int i = 0; i < size_mas; ++i)
+    {
+        if (result[i] != '0')
+            flag_no_zero = 1;
+
+        if (flag_no_zero)
+            *format_buffer = print(*format_buffer, size, result[i], global_counter);
+    }
+	return flag_no_zero;
+}
 
 /**
  Выполняет полную запись аргумента toconvert в виде hex-числа, размера unsigned short int, в строку format_buffer.
@@ -36,32 +120,14 @@ char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_c
 char *print_short_hex(char *format_buffer, size_t *size, const unsigned short toconvert, int *global_counter, char sym)
 {
     int tmp = toconvert;
-    const char hex_big[] = "0123456789ABCDEF";
-    const char hex_small[] = "0123456789abcdef";
-
-    const char *hexDigits = NULL;
-    if (sym == 'x')
-        hexDigits = hex_small;
-    else
-        hexDigits = hex_big;
+    const char *hexDigits = get_alphabet(sym);
+	
     char result[5];
-    for (int i = 3; i >= 0; i--)
-    {
-        result[i] = hexDigits[tmp % 16];
-        tmp = tmp / 16;
-    }
+	get_hex_num(tmp, 5, hexDigits, result);
 
-    int flag = 0;
-    for (int i = 0; i < 4; ++i)
-    {
-        if (result[i] != '0')
-            flag = 1;
+    int flag_no_zero = check_for_zero(4, result, &format_buffer, size, global_counter);
 
-        if (flag)
-            format_buffer = print(format_buffer, size, result[i], global_counter);
-    }
-
-    if (flag == 0)
+    if (!flag_no_zero)
         format_buffer = print(format_buffer, size, '0', global_counter);
 
     return format_buffer;
@@ -83,32 +149,15 @@ char *print_full_hex(char *format_buffer, size_t *size, const unsigned int tocon
     unsigned int tmp = toconvert;
     if (tmp < 0)
         tmp += 4294967295;
-    const char hex_big[] = "0123456789ABCDEF";
-    const char hex_small[] = "0123456789abcdef";
-
-    const char *hexDigits = NULL;
-    if (sym == 'x')
-        hexDigits = hex_small;
-    else
-        hexDigits = hex_big;
+	
+    const char *hexDigits = get_alphabet(sym);
+	
     char result[9];
-    for (int i = 7; i >= 0; i--)
-    {
-        result[i] = hexDigits[tmp % 16];
-        tmp = tmp / 16;
-    }
+	get_hex_num_unsigned(tmp, 9, hexDigits, result);
 
-    int flag = 0;
-    for (int i = 0; i < 8; ++i)
-    {
-        if (result[i] != '0')
-            flag = 1;
+    int flag_no_zero = check_for_zero(8, result, &format_buffer, size, global_counter);
 
-        if (flag)
-            format_buffer = print(format_buffer, size, result[i], global_counter);
-    }
-
-    if (flag == 0)
+    if (!flag_no_zero)
         format_buffer = print(format_buffer, size, '0', global_counter);
 
     return format_buffer;
