@@ -6,7 +6,7 @@ OBJ := func.o test.o
 	$(CC) $(CFLAGS) -c $<
 
 app.exe: main.o $(OBJ)
-	$(CC) $(CFLAGS) -o app.exe main.o $(OBJ)
+	$(CC) $(CFLAGS) -o app.exe main.o $(OBJ) -lm
 	
 clean:
 	del *.o *.gch *.exe
