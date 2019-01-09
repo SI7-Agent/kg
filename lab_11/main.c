@@ -5,6 +5,7 @@ int main()
 {
     int test_counter = 1;
     char string1[25], string2[25];
+
     {
         const char *command = "hex %hx";
         int buff_s = 25;

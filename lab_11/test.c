@@ -12,7 +12,6 @@ void answer(int val, int id)
 {
     if (val == OK)
        printf("%s %d %s\n", "test", id, "PASSED");
-
     else
         printf("%s %d %s\n", "test", id, "FAILED");
 }
@@ -42,7 +41,6 @@ int test1()
     }
     else
         flag = FAIL;
-
     return flag;
 }
 

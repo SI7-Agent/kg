@@ -12,9 +12,9 @@
 
 char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_counter)
 {
-    *global_counter = *global_counter + 1;
-    if(*size > 1)
-    {
+	*global_counter = *global_counter + 1;
+	if(*size > 1)
+	{
         *format_buffer = cur_sym;
         *size = *size - 1;
         format_buffer++;
@@ -29,19 +29,15 @@ char *print(char *format_buffer, size_t *size, const char cur_sym, int *global_c
  * @return возвращает указатель на массив с подходящим алфавитом.
  */
  
-const char *get_alphabet(char sym)
+char *get_alphabet(char sym)
 {
-	const char hex_big[] = "0123456789ABCDEF";
-    const char hex_small[] = "0123456789abcdef";
-	const char *hexDigits = NULL;
+	char *hex_big = "0123456789ABCDEF\0";
+   	char *hex_small = "0123456789abcdef\0";
+	char *hexDigits = NULL;
 	if (sym == 'x')
-	{
-        hexDigits = hex_small;
-	}
+   		hexDigits = hex_small;
     else
-	{
 		hexDigits = hex_big;
-	}
 	return hexDigits;
 }
 
@@ -54,12 +50,12 @@ const char *get_alphabet(char sym)
  * @param result
  */
 
-void get_hex_num(int tmp, int size, const char *hexDigits, char result[size])
+void get_hex_num(int tmp, int size, char *hexDigits, char result[size])
 {
 	for (int i = size - 2; i >= 0; i--)
     {
-        result[i] = hexDigits[tmp % 16];
-        tmp = tmp / 16;
+       	result[i] = hexDigits[tmp % 16];
+       	tmp = tmp / 16;
     }
 }
 
@@ -76,7 +72,7 @@ void get_hex_num_unsigned(unsigned int tmp, int size, const char *hexDigits, cha
 {
 	for (int i = size - 2; i >= 0; i--)
     {
-        result[i] = hexDigits[tmp % 16];
+       	result[i] = hexDigits[tmp % 16];
         tmp = tmp / 16;
     }
 }
@@ -97,11 +93,11 @@ int check_for_zero(int size_mas, char result[size_mas], char **format_buffer, si
 	int flag_no_zero = 0;
 	for (int i = 0; i < size_mas; ++i)
     {
-        if (result[i] != '0')
-            flag_no_zero = 1;
+       	if (result[i] != '0')
+           	flag_no_zero = 1;
 
         if (flag_no_zero)
-            *format_buffer = print(*format_buffer, size, result[i], global_counter);
+          	*format_buffer = print(*format_buffer, size, result[i], global_counter);
     }
 	return flag_no_zero;
 }
@@ -120,16 +116,14 @@ int check_for_zero(int size_mas, char result[size_mas], char **format_buffer, si
 char *print_short_hex(char *format_buffer, size_t *size, const unsigned short toconvert, int *global_counter, char sym)
 {
     int tmp = toconvert;
-    const char *hexDigits = get_alphabet(sym);
-	
-    char result[5];
+    char *hexDigits = get_alphabet(sym);
+
+    char result[5];	
 	get_hex_num(tmp, 5, hexDigits, result);
 
     int flag_no_zero = check_for_zero(4, result, &format_buffer, size, global_counter);
-
     if (!flag_no_zero)
         format_buffer = print(format_buffer, size, '0', global_counter);
-
     return format_buffer;
 }
 
@@ -156,10 +150,8 @@ char *print_full_hex(char *format_buffer, size_t *size, const unsigned int tocon
 	get_hex_num_unsigned(tmp, 9, hexDigits, result);
 
     int flag_no_zero = check_for_zero(8, result, &format_buffer, size, global_counter);
-
     if (!flag_no_zero)
         format_buffer = print(format_buffer, size, '0', global_counter);
-
     return format_buffer;
 }
 
@@ -175,7 +167,6 @@ int digit_len(int num)
     int num_len = 0;
     if (num == 0)
         num_len = 1;
-
     else
         while (abs(num) != 0)
         {
@@ -220,7 +211,6 @@ char *print_int(char *format_buffer, size_t *size, const int toprint, int *globa
 
     for (int i = 0; i < num_len; ++i)
         format_buffer = print(format_buffer, size, get_n_char(abs(num), num_len - i), global_counter);
-
     return format_buffer;
 }
 
