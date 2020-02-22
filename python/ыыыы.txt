@@ -1,0 +1,100 @@
+def vstavka(asa):
+    a = asa
+    for i in range(len(a)):
+        v = a[i]
+        j = i
+        while(a[j-1]>v) and(j>0):
+            a[j]=a[j-1]
+            j -=1
+        a[j]=v
+    return a
+
+def bubble(a):
+    for i in range(len(a)):
+        for j in range(i+1,len(a)):
+            if a[j]<a[i]:
+                a[j],a[i]=a[i],a[j]
+    return a
+
+
+def bubble_flag(a):
+    for i in range(len(a)):
+        flag = False
+        for j in range(i+1,len(a)):
+            if a[j]<a[i]:
+                a[j],a[i]=a[i],a[j]
+                flag = True
+        if not flag: break
+    return a
+            
+def shaker(mas):
+    k = right = len(mas) - 1
+    left = 1
+    while (left < right):
+        for j in range(left, right + 1):
+                if mas[j - 1] > mas[j]:
+                    mas[j - 1], mas[j] = mas[j], mas[j - 1]
+                    k = j
+                right = k
+
+        for j in range(right, left - 1, -1):
+            if mas[j - 1] > mas[j]:
+                mas[j - 1], mas[j] = mas[j], mas[j - 1]
+                k = j
+            left = k
+    return mas
+    
+def q(l):
+    if len(l) <= 1:
+        return l
+    else:
+        x = random.choice(l)
+        a = []
+        b = []
+        c = []
+        for n in l:
+            if n<x:
+                a.append(n)
+            elif n>x:
+                b.append(n)
+            else: c.append(n)
+        return q(a)+c+q(b)
+
+def binar_vstavka(mas):
+    n = len(mas)
+    for i in range(1, n):
+        if mas[i-1] > mas[i]:
+            x = mas[i]
+            left = 0
+            right = i - 1
+            while True:
+                sr = (left + right)//2
+                if mas[sr] < x:
+                    left = sr + 1
+                else:
+                    right = sr -1
+                if left > right:
+                    break
+            j = i - 1
+            while j >= left:
+                mas[j+1] = mas[j]
+                j -= 1
+            mas[left] = x
+    return mas
+
+def shell(mas):
+
+    k = 1
+    while int((3**k - 1)/2) < len(mas):
+        k += 1
+
+    t = int((3**k - 1)/2)
+    while t > 0:
+        for i in range(len(mas) - t):
+            j = i
+            while j >= 0 and mas[j] > mas[j + t]:
+                mas[j], mas[j + t] = mas[j + t], mas[j]
+                j -= 1
+        k -= 1
+        t = int((3**k - 1)/2)
+    return mas
