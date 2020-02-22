@@ -1,4 +1,0 @@
-Sorted united:
-1000 2000 2500 4300 6000 6400 
-Max 1: 6000, Min 1: 1000, Max 2: 6400, Min 2: 2500
-Max global: 6400, Min global: 1000
