@@ -1,0 +1,20 @@
+Programm allows you make operations with matrixes getting from files. In one file you can store only one matrix.
+
+You can:
+1) sum up two matrixes
+2) multiple two matrixes
+3) get determinant using split by column
+
+Another ability is a getting reference information.
+
+To sum up matrixes give key "a", names of files with matrixes and name of file with result.
+For example: a matr1.txt matr2.txt res.txt
+
+To multiple matrixes give key "m", names of files with matrixes and name of file with result.
+For example: m matr1.txt matr2.txt res.txt
+
+To get determinant give key "o", name of file with matrix and name of file with result.
+For example: o matr1.txt res.txt
+
+To get getting reference information give key "h", names of files with matrixes and name of file with result.
+For example: h matr1.txt matr2.txt res.txt
